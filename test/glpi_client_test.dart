@@ -16,11 +16,10 @@ void main() {
     glpiClientLogin =
         GlpiClient.withLogin(baseUrl, username, password, appToken: appToken);
 
-    String userToken = env['USER_API_TOKEN'].toString().trim();
-    glpiClientToken =
-        GlpiClient.withToken(baseUrl, userToken, appToken: appToken);
+    String userToken = env['USER_TOKEN'].toString().trim();
+    glpiClientToken = GlpiClient.withToken(baseUrl, userToken, appToken);
   });
-  group('Testing the glpiClient', () {
+  group('Testing the client access using username and', () {
     test('Should get a session token with login', () async {
       await glpiClientLogin?.initSession();
 
@@ -32,7 +31,9 @@ void main() {
 
       expect(glpiClientLogin?.sessionToken, isNotNull);
     });
+  });
 
+  group('Testing client access using user_token', () {
     test('Get session token with user_token', () async {
       await glpiClientToken?.initSession();
 
@@ -43,6 +44,60 @@ void main() {
       await glpiClientToken?.initSession(sendInQuery: true);
 
       expect(glpiClientToken?.sessionToken, isNotNull);
+    });
+  });
+
+  group('Testing the passwordLost method', () {
+    late String email;
+
+    setUp(() async {
+      await glpiClientLogin?.initSession();
+      await glpiClientToken?.initSession();
+      email = env['ACCOUNT_EMAIL'].toString().trim();
+    });
+
+    test('Request a password reset with login client', () async {
+      bool? result = await glpiClientLogin?.lostPassword(email);
+
+      expect(result, true);
+    });
+
+    test('Request a password reset with token client', () async {
+      bool? result = await glpiClientToken?.lostPassword(email);
+
+      expect(result, true);
+    });
+  });
+
+  group('Testing getMyProfiles', () {
+    setUp(() async {
+      await glpiClientLogin?.initSession();
+      await glpiClientToken?.initSession();
+    });
+
+    test('Request my profiles with login client', () async {
+      var result = await glpiClientLogin?.getMyProfiles();
+
+      expect(result, isMap);
+    });
+
+    test('Request my profiles with token client', () async {
+      var result = await glpiClientToken?.getMyProfiles();
+
+      expect(result, isMap);
+    });
+  });
+
+  group('Testing getFullSession', () {
+    setUp(() async {
+      await glpiClientLogin?.initSession();
+      await glpiClientToken?.initSession();
+    });
+
+    test('Get the full session with login', () async {
+      await glpiClientLogin?.getFullSession();
+
+      expect(glpiClientLogin?.sessionToken, isNotNull);
     });
   });
 }

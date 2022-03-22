@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the GlpiClient class from the glpi_dart library, for the Dart programming language.">
+  <title>GlpiClient class - glpi_dart library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">glpi_dart</a></li>
+    <li><a href="../glpi_dart/glpi_dart-library.html">glpi_dart</a></li>
+    <li class="self-crumb">GlpiClient abstract class</li>
+  </ol>
+  <div class="self-name">GlpiClient</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-class">GlpiClient</span> class 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>A client used to communicate with the GLPI API.
+To create a client you may use either <a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a> or <a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a>.
+The former will create a client with a username and password, the latter with a user token and an app token.</p>
+</section>
+
+
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="GlpiClient.withLogin" class="callable">
+          <span class="name"><a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a></span><span class="signature">(<span class="parameter" id="withLogin-param-baseUrl"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">baseUrl</span>, </span><span class="parameter" id="withLogin-param-username"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">username</span>, </span><span class="parameter" id="withLogin-param-password"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">password</span>, </span><span class="parameter" id="withLogin-param-appToken">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">appToken</span>}</span>)</span>
+        </dt>
+        <dd>
+          Return a new instance of <a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a> using the given <code>baseUrl</code> and credentials (<code>username</code> / <code>password</code>). 
+          <div class="constructor-modifier features">factory</div>
+        </dd>
+        <dt id="GlpiClient.withToken" class="callable">
+          <span class="name"><a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a></span><span class="signature">(<span class="parameter" id="withToken-param-baseUrl"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">baseUrl</span>, </span><span class="parameter" id="withToken-param-userToken"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">userToken</span>, </span><span class="parameter" id="withToken-param-appToken"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">appToken</span></span>)</span>
+        </dt>
+        <dd>
+          Return a new instance of <a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a> using the given <code>baseUrl</code> and user_token <code>userToken</code> and app_token <code>appToken</code>.
+Unlike <a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a>, this method <strong>require</strong> an app_token to work. 
+          <div class="constructor-modifier features">factory</div>
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="appToken" class="property">
+  <span class="name"><a href="../glpi_dart/GlpiClient/appToken.html">appToken</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> 
+
+</dt>
+<dd>
+  The app token used to authenticate the client.
+It"s mandatory when using the <a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a> constructor.
+See glpi documentation for more information. 
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="baseUrl" class="property">
+  <span class="name"><a href="../glpi_dart/GlpiClient/baseUrl.html">baseUrl</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
+
+</dt>
+<dd>
+  The base url of the GLPI API.
+Example https//example.com/glpi/apirest.php/ 
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd class="inherited">
+  The hash code for this object. <a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">[...]</a>
+  <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span> 
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object. 
+  <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="session" class="property">
+  <span class="name"><a href="../glpi_dart/GlpiClient/session.html">session</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span> 
+
+</dt>
+<dd>
+   
+  <div class="features">read-only</div>
+
+</dd>
+
+        <dt id="sessionToken" class="property">
+  <span class="name"><a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> 
+
+</dt>
+<dd>
+  The session token get whe using <a href="../glpi_dart/GlpiClient/initSession.html">initSession</a>. 
+  <div class="features">read / write</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="changeActiveEntities" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/changeActiveEntities.html">changeActiveEntities</a></span><span class="signature">(<wbr><span class="parameter" id="changeActiveEntities-param-entitiesId"><span class="type-annotation">dynamic</span> <span class="parameter-name">entitiesId</span>, </span><span class="parameter" id="changeActiveEntities-param-recursive">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">recursive</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Allow to change the active entity for the current user.
+<code>entitiesId</code> can either be the numerical id of the entity or <code>all</code> to load all the entities.
+<code>recursive</code> can be set to true to load all the sub-entities.
+Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities</code> 
+  
+
+</dd>
+
+        <dt id="changeActiveProfile" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></span><span class="signature">(<wbr><span class="parameter" id="changeActiveProfile-param-profilesId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">profilesId</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Change the active profile for the current user.
+Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile</code>. 
+  
+
+</dd>
+
+        <dt id="getActiveEntities" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the current active entity for the current user as a <code>Map</code>
+Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-entities 
+  
+
+</dd>
+
+        <dt id="getActiveProfile" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getActiveProfile.html">getActiveProfile</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the current active profile for the current user as a <code>Map</code>
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-profile</code> 
+  
+
+</dd>
+
+        <dt id="getFullSession" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the session data include in the php $_SESSION.
+For the moment it's just a <code>Map</code> of the json response.
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get-full-session</code>. 
+  
+
+</dd>
+
+        <dt id="getMyEntities" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></span><span class="signature">(<wbr><span class="parameter" id="getMyEntities-param-isRecursive">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isRecursive</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the entities list for the current user.
+Setting <code>isRecursive</code> to true will get the list of all the entities and sub-entities.
+Entities are under the key <code>myentities</code>
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-entities</code> 
+  
+
+</dd>
+
+        <dt id="getMyProfiles" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return a <code>Map</code> of all the profil for the current user
+Profiles are under the key <code>myprofiles</code>
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles</code>. 
+  
+
+</dd>
+
+        <dt id="initSession" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/initSession.html">initSession</a></span><span class="signature">(<wbr><span class="parameter" id="initSession-param-getFullSession">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getFullSession</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initSession-param-sendInQuery"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">sendInQuery</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/FutureOr-class.html">FutureOr</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieve the session token.
+If <code>getFullSession</code> is set to true, will also return the session details in session.
+If <code>sendInQuery</code> is set to true, will send the credentials in the query string instead of the header.
+Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be initialized.
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session</code>. 
+  
+
+</dd>
+
+        <dt id="killSession" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/killSession.html">killSession</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return <code>true</code> if the client is successfully disconnected from the API.
+Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be disconnected.
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#kill-session</code>. 
+  
+
+</dd>
+
+        <dt id="lostPassword" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/lostPassword.html">lostPassword</a></span><span class="signature">(<wbr><span class="parameter" id="lostPassword-param-email"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">email</span>, </span><span class="parameter" id="lostPassword-param-passwordForgetToken">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">passwordForgetToken</span>, </span><span class="parameter" id="lostPassword-param-newPassword"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">newPassword</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Allow to request a password reset for the account using the <code>email</code> address.
+Return true if the request is successful BUT this doesn't mean that your glpi is configured to send emails.
+Check the glpi's configuration to see the prerequisites.
+If <code>passwordForgetToken</code> AND <code>newPassword</code> are set, the password will be changed with the value of <code>newPassword</code> instead.
+Sending <code>passwordForgetToken</code> without <code>newPassword</code> and the opposite will throw an <a href="https://api.flutter.dev/flutter/dart-core/ArgumentError-class.html">ArgumentError</a>.
+Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#lost-password</code>. 
+  
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a non-existent method or property is accessed. <a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">[...]</a>
+  <div class="features">inherited</div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object. <a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">[...]</a>
+  <div class="features">inherited</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator. <a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">[...]</a>
+  <div class="features">inherited</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">glpi_dart</a></li>
+  <li><a href="../glpi_dart/glpi_dart-library.html">glpi_dart</a></li>
+  <li class="self-crumb">GlpiClient abstract class</li>
+</ol>
+
+
+    <h5>glpi_dart library</h5>
+    <ol>
+  <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#classes">Classes</a></li>
+  <li><a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a></li>
+
+
+
+
+
+
+
+
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <ol>
+
+    <li class="section-title"><a href="../glpi_dart/GlpiClient-class.html#constructors">Constructors</a></li>
+    <li><a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">withLogin</a></li>
+    <li><a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">withToken</a></li>
+
+
+    <li class="section-title">
+      <a href="../glpi_dart/GlpiClient-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../glpi_dart/GlpiClient/appToken.html">appToken</a></li>
+    <li><a href="../glpi_dart/GlpiClient/baseUrl.html">baseUrl</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../glpi_dart/GlpiClient/session.html">session</a></li>
+    <li><a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a></li>
+
+    <li class="section-title"><a href="../glpi_dart/GlpiClient-class.html#instance-methods">Methods</a></li>
+    <li><a href="../glpi_dart/GlpiClient/changeActiveEntities.html">changeActiveEntities</a></li>
+    <li><a href="../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getActiveProfile.html">getActiveProfile</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
+    <li><a href="../glpi_dart/GlpiClient/initSession.html">initSession</a></li>
+    <li><a href="../glpi_dart/GlpiClient/killSession.html">killSession</a></li>
+    <li><a href="../glpi_dart/GlpiClient/lostPassword.html">lostPassword</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+
+    <li class="section-title inherited"><a href="../glpi_dart/GlpiClient-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    glpi_dart
+      0.0.1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
