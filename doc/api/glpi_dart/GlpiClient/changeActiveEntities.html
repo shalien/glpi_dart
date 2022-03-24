@@ -66,7 +66,7 @@
 <code>entitiesId</code> can either be the numerical id of the entity or <code>all</code> to load all the entities.
 <code>recursive</code> can be set to true to load all the sub-entities.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities</code></p>
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities</a></p>
 </section>
 
 
@@ -75,12 +75,12 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#cha
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;bool&gt; changeActiveEntities(dynamic entitiesId,
     {bool recursive = false}) async {
-  if (sessionToken == null) {
+  if (_sessionToken == null) {
     throw Exception(&#39;No session token, initSession first&#39;);
   }
 
   final Map&lt;String, String&gt; headers = {
-    &#39;Session-Token&#39;: sessionToken!,
+    &#39;Session-Token&#39;: _sessionToken!,
     &#39;Content-Type&#39;: &#39;application&#47;json&#39;,
     ...?appToken != null ? {&#39;App-Token&#39;: appToken!} : null,
   };
@@ -141,7 +141,10 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#cha
     <li><a href="../../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getActiveProfile.html">getActiveProfile</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getAllItem.html">getAllItem</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getGlpiConfig.html">getGlpiConfig</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getItem.html">getItem</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
     <li><a href="../../glpi_dart/GlpiClient/initSession.html">initSession</a></li>

@@ -144,12 +144,12 @@ Example https//example.com/glpi/apirest.php/
 
         <dt id="sessionToken" class="property">
   <span class="name"><a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> 
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
 
 </dt>
 <dd>
   The session token get whe using <a href="../glpi_dart/GlpiClient/initSession.html">initSession</a>. 
-  <div class="features">read / write</div>
+  <div class="features">read-only</div>
 
 </dd>
 
@@ -171,7 +171,7 @@ Example https//example.com/glpi/apirest.php/
 <code>entitiesId</code> can either be the numerical id of the entity or <code>all</code> to load all the entities.
 <code>recursive</code> can be set to true to load all the sub-entities.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities</code> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities</a> 
   
 
 </dd>
@@ -186,7 +186,7 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#cha
 <dd>
   Change the active profile for the current user.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile</code>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile">https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile</a>. 
   
 
 </dd>
@@ -200,7 +200,7 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#cha
 </dt>
 <dd>
   Return the current active entity for the current user as a <code>Map</code>
-Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-entities 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-entities</a> 
   
 
 </dd>
@@ -214,7 +214,23 @@ Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-acti
 </dt>
 <dd>
   Return the current active profile for the current user as a <code>Map</code>
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-profile</code> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-profile">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-profile</a> 
+  
+
+</dd>
+
+        <dt id="getAllItem" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getAllItem.html">getAllItem</a></span><span class="signature">(<wbr><span class="parameter" id="getAllItem-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="getAllItem-param-expandDropdowns">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">expandDropdowns</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getAllItem-param-getHateoas"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getHateoas</span> = <span class="default-value">true</span>, </span><span class="parameter" id="getAllItem-param-onlyId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">onlyId</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getAllItem-param-rangeStart"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeStart</span> = <span class="default-value">0</span>, </span><span class="parameter" id="getAllItem-param-rangeLimit"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeLimit</span> = <span class="default-value">50</span>, </span><span class="parameter" id="getAllItem-param-sort"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">sort</span> = <span class="default-value">&#39;id&#39;</span>, </span><span class="parameter" id="getAllItem-param-order"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">order</span> = <span class="default-value">&#39;ASC&#39;</span>, </span><span class="parameter" id="getAllItem-param-searchText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">searchText</span> = <span class="default-value">&#39;NULL&#39;</span>, </span><span class="parameter" id="getAllItem-param-isDeleted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isDeleted</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getAllItem-param-addKeysNames"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a>?</span> <span class="parameter-name">addKeysNames</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return <strong>ALL</strong> the items of the given type the current user can see, depending on your server configuration and the number of items proceeded it may have unexpected results.
+<a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a> contains all the available item types according to the latest GLPI documentation.
+By default, only the 50 firts item will be returned. This can be changed by setting the <code>rangeStart</code> parameter and <code>rangeLimit</code> parameters.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-all-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-all-items</a> 
   
 
 </dd>
@@ -229,7 +245,38 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get
 <dd>
   Return the session data include in the php $_SESSION.
 For the moment it's just a <code>Map</code> of the json response.
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get-full-session</code>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-full-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-full-session</a>. 
+  
+
+</dd>
+
+        <dt id="getGlpiConfig" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getGlpiConfig.html">getGlpiConfig</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the Glpi instance configuration data inside a <code>Map</code>.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-glpi-config">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-glpi-config</a> 
+  
+
+</dd>
+
+        <dt id="getItem" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getItem.html">getItem</a></span><span class="signature">(<wbr><span class="parameter" id="getItem-param-itemtype"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemtype</span>, </span><span class="parameter" id="getItem-param-id"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span>, </span><span class="parameter" id="getItem-param-expandDropdowns">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">expandDropdowns</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-getHateoas"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getHateoas</span> = <span class="default-value">true</span>, </span><span class="parameter" id="getItem-param-getSha1"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getSha1</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withDevices"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withDevices</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withDisks"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withDisks</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withSoftwares"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withSoftwares</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withConnections"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withConnections</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withNetworkPorts"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withNetworkPorts</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withInfoComs"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withInfoComs</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withContracts"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withContracts</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withDocuments"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withDocuments</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withTickets"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withTickets</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withProblems"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withProblems</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withChanges"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withChanges</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withNotes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withNotes</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-withLogs"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withLogs</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getItem-param-addKeysNames"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">addKeysNames</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return an item identified by the <code>id</code> and of type <code>itemType</code>
+Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
+<code>withDevices</code> will be ignored if the <code>itemtype</code> isn't <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Computer</a>,<a href="../glpi_dart/GlpiItemType.html">GlpiItemType.NetworkEquipment</a>,<a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Peripheral</a>,<a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Phone</a> or <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Printer</a>.
+<code>withDisks</code>, <code>withSoftwares</code>, <code>withConnections</code> will be ignored if the <code>itemtype</code> isn't <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Computer</a>.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-an-item">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-an-item</a> 
   
 
 </dd>
@@ -245,7 +292,7 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get
   Return the entities list for the current user.
 Setting <code>isRecursive</code> to true will get the list of all the entities and sub-entities.
 Entities are under the key <code>myentities</code>
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-entities</code> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-entities</a> 
   
 
 </dd>
@@ -260,7 +307,7 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get
 <dd>
   Return a <code>Map</code> of all the profil for the current user
 Profiles are under the key <code>myprofiles</code>
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles</code>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles</a>. 
   
 
 </dd>
@@ -274,10 +321,11 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#get
 </dt>
 <dd>
   Retrieve the session token.
+The token will be stored in the <code>_sessionToken</code> field automatically.
 If <code>getFullSession</code> is set to true, will also return the session details in session.
 If <code>sendInQuery</code> is set to true, will send the credentials in the query string instead of the header.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be initialized.
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session</code>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session</a>. 
   
 
 </dd>
@@ -292,7 +340,7 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#ini
 <dd>
   Return <code>true</code> if the client is successfully disconnected from the API.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be disconnected.
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#kill-session</code>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#kill-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#kill-session</a>. 
   
 
 </dd>
@@ -310,7 +358,7 @@ Return true if the request is successful BUT this doesn't mean that your glpi is
 Check the glpi's configuration to see the prerequisites.
 If <code>passwordForgetToken</code> AND <code>newPassword</code> are set, the password will be changed with the value of <code>newPassword</code> instead.
 Sending <code>passwordForgetToken</code> without <code>newPassword</code> and the opposite will throw an <a href="https://api.flutter.dev/flutter/dart-core/ArgumentError-class.html">ArgumentError</a>.
-Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#lost-password</code>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#lost-password">https://github.com/glpi-project/glpi/blob/master/apirest.md#lost-password</a>. 
   
 
 </dd>
@@ -392,6 +440,8 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#los
 
 
 
+  <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#enums">Enums</a></li>
+  <li><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></li>
 
 
 </ol>
@@ -421,7 +471,10 @@ Reference: <code>https://github.com/glpi-project/glpi/blob/master/apirest.md#los
     <li><a href="../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></li>
     <li><a href="../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></li>
     <li><a href="../glpi_dart/GlpiClient/getActiveProfile.html">getActiveProfile</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getAllItem.html">getAllItem</a></li>
     <li><a href="../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getGlpiConfig.html">getGlpiConfig</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getItem.html">getItem</a></li>
     <li><a href="../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></li>
     <li><a href="../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
     <li><a href="../glpi_dart/GlpiClient/initSession.html">initSession</a></li>

@@ -88,6 +88,19 @@ void main() {
     });
   });
 
+  group('Testing getGlpiConfig', () {
+    setUp(() async {
+      await glpiClientLogin?.initSession();
+      await glpiClientToken?.initSession();
+    });
+
+    test('Get glpi config with login', () async {
+      var config = await glpiClientLogin?.getGlpiConfig();
+
+      expect(config, isMap);
+    });
+  });
+
   group('Testing getFullSession', () {
     setUp(() async {
       await glpiClientLogin?.initSession();

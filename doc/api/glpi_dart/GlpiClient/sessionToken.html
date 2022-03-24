@@ -49,23 +49,28 @@
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
-        <section class="multi-line-signature">
-          <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?
-          <span class="name ">sessionToken</span>
-          <div class="features">read / write</div>
 
-        </section>
         
+<section id="getter">
+
+<section class="multi-line-signature">
+  <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  <span class="name ">sessionToken</span>
+  
+
+</section>
+
+
 <section class="desc markdown">
   <p>The session token get whe using <a href="../../glpi_dart/GlpiClient/initSession.html">initSession</a>.</p>
 </section>
 
-        
+
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">String? sessionToken;
+  <pre class="language-dart"><code class="language-dart">String get sessionToken =&gt; _sessionToken!;</code></pre>
+</section>
 
-</code></pre>
 </section>
 
 
@@ -109,7 +114,10 @@
     <li><a href="../../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getActiveProfile.html">getActiveProfile</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getAllItem.html">getAllItem</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getGlpiConfig.html">getGlpiConfig</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getItem.html">getItem</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
     <li><a href="../../glpi_dart/GlpiClient/initSession.html">initSession</a></li>
