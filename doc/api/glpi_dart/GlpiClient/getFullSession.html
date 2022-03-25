@@ -84,8 +84,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
       await http.get(Uri.parse(&#39;$baseUrl&#47;getFullSession&#39;), headers: headers);
 
   if (response.statusCode != 200) {
-    throw Exception(
-        &#39;Failed to get session token ${response.statusCode} ${response.body}&#39;);
+    throw Exception(&#39;${response.statusCode} ${response.body}&#39;);
   }
 
   _session = json.decode(response.body);
@@ -130,6 +129,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <li><a href="../../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a></li>
 
     <li class="section-title"><a href="../../glpi_dart/GlpiClient-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/addItems.html">addItems</a></li>
     <li><a href="../../glpi_dart/GlpiClient/changeActiveEntities.html">changeActiveEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></li>
@@ -138,12 +138,16 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <li><a href="../../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getGlpiConfig.html">getGlpiConfig</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getItem.html">getItem</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getMultipleItems.html">getMultipleItems</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getSubItems.html">getSubItems</a></li>
     <li><a href="../../glpi_dart/GlpiClient/initSession.html">initSession</a></li>
     <li><a href="../../glpi_dart/GlpiClient/killSession.html">killSession</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/listSearchOptions.html">listSearchOptions</a></li>
     <li><a href="../../glpi_dart/GlpiClient/lostPassword.html">lostPassword</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/searchItems.html">searchItems</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
 
     <li class="section-title inherited"><a href="../../glpi_dart/GlpiClient-class.html#operators">Operators</a></li>

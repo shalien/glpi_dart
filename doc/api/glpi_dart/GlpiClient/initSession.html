@@ -52,7 +52,7 @@
     <section class="multi-line-signature">
       
 
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/FutureOr-class.html">FutureOr</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
 <span class="name ">initSession</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="initSession-param-getFullSession">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getFullSession</span> = <span class="default-value">false</span>, </span></li>
 <li><span class="parameter" id="initSession-param-sendInQuery"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">sendInQuery</span> = <span class="default-value">false</span>}</span></li>
 </ol>)
@@ -63,7 +63,7 @@
     
 <section class="desc markdown">
   <p>Retrieve the session token.
-The token will be stored in the <code>_sessionToken</code> field automatically.
+The token will be stored in the <a href="../../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a> field automatically.
 If <code>getFullSession</code> is set to true, will also return the session details in session.
 If <code>sendInQuery</code> is set to true, will send the credentials in the query string instead of the header.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be initialized.
@@ -74,7 +74,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">FutureOr&lt;String&gt; initSession(
+  <pre class="language-dart"><code class="language-dart">Future&lt;String&gt; initSession(
     {bool getFullSession = false, bool sendInQuery = false});</code></pre>
 </section>
 
@@ -115,6 +115,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <li><a href="../../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a></li>
 
     <li class="section-title"><a href="../../glpi_dart/GlpiClient-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/addItems.html">addItems</a></li>
     <li><a href="../../glpi_dart/GlpiClient/changeActiveEntities.html">changeActiveEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></li>
@@ -123,12 +124,16 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <li><a href="../../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getGlpiConfig.html">getGlpiConfig</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getItem.html">getItem</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getMultipleItems.html">getMultipleItems</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getSubItems.html">getSubItems</a></li>
     <li><a href="../../glpi_dart/GlpiClient/initSession.html">initSession</a></li>
     <li><a href="../../glpi_dart/GlpiClient/killSession.html">killSession</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/listSearchOptions.html">listSearchOptions</a></li>
     <li><a href="../../glpi_dart/GlpiClient/lostPassword.html">lostPassword</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/searchItems.html">searchItems</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
 
     <li class="section-title inherited"><a href="../../glpi_dart/GlpiClient-class.html#operators">Operators</a></li>

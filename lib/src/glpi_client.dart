@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:glpi_dart/src/glpi_item_type.dart';
 import 'package:http/http.dart' as http;
 
+import 'glpi_search_criteria.dart';
+
 /// A client used to communicate with the GLPI API.
 /// To create a client you may use either [GlpiClient.withLogin] or [GlpiClient.withToken].
 /// The former will create a client with a username and password, the latter with a user token and an app token.
@@ -456,6 +458,9 @@ abstract class GlpiClient {
     return Future.value(formatted);
   }
 
+  /// Return the sub-items of [subItemType] the item identified by the [mainItemId] and of type [mainItemtype]
+  /// Will throw an [Exception] if the request fails or if the selected id is incorrect.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-sub-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-sub-items)
   Future<List<Map<String, dynamic>>> getSubItems(
       GlpiItemType mainItemtype, int mainItemId, GlpiItemType subItemType,
       {bool expandDropdowns = false,
@@ -497,6 +502,192 @@ abstract class GlpiClient {
 
     List<Map<String, dynamic>> formatted = decodedJson.map((element) {
       return element as Map<String, dynamic>;
+    }).toList();
+
+    return Future.value(formatted);
+  }
+
+  /// Return multiples items from many types.
+  /// You must pass a [List] of [Map] with the following structure a [GlpiItemType] as the key and the id of the item as the value.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-multiple-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-multiple-items).
+  Future<List<Map<String, dynamic>>> getMultipleItems(
+      List<Map<GlpiItemType, int>> items,
+      {bool expandDropdowns = false,
+      bool getHateoas = true,
+      bool getSha1 = false,
+      bool withDevices = false,
+      bool withDisks = false,
+      bool withSoftwares = false,
+      bool withConnections = false,
+      bool withNetworkPorts = false,
+      bool withInfoComs = false,
+      bool withContracts = false,
+      bool withDocuments = false,
+      bool withTickets = false,
+      bool withProblems = false,
+      bool withChanges = false,
+      bool withNotes = false,
+      bool withLogs = false,
+      List<String>? addKeysNames}) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    String itemsUrl = '';
+
+    for (var i = 0; i < items.length; i++) {
+      final type = items[i].keys.first.name.split('.').last;
+      final id = items[i].values.first;
+
+      itemsUrl += 'items[$i][itemtype]=$type&items[$i][items_id]=$id&';
+    }
+
+    String uriStr =
+        '$baseUrl/getMultipleItems?${itemsUrl}expand_dropdowns=$expandDropdowns&get_hateoas=$getHateoas&get_sha1=$getSha1&with_networkports=$withNetworkPorts&';
+
+    uriStr =
+        '$uriStr&with_devices=$withDevices&with_disks=$withDisks&with_softwares=$withSoftwares&with_connections=$withConnections';
+
+    print(uriStr);
+
+    final uri = Uri.parse(uriStr);
+
+    if (addKeysNames != null) {
+      for (var key in addKeysNames) {
+        uri.queryParameters.addAll({'add_keys_names[]': key});
+      }
+    }
+
+    final response = await http.get(uri, headers: headers);
+
+    if (response.statusCode != 200 && response.statusCode != 206) {
+      throw Exception('${response.statusCode} ${response.body}');
+    }
+
+    List<dynamic> decodedJson = json.decode(response.body);
+
+    List<Map<String, dynamic>> formatted = decodedJson.map((element) {
+      return element as Map<String, dynamic>;
+    }).toList();
+
+    return Future.value(formatted);
+  }
+
+  /// Return all the searchOptions usable in [searchItems] criteria for a given [GlpiItemType].
+  Future<Map<String, dynamic>> listSearchOptions(GlpiItemType itemType) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse(
+        '$baseUrl/listSearchOptions/${itemType.toString().split('.').last}');
+
+    final response = await http.get(uri, headers: headers);
+
+    if (response.statusCode != 200 && response.statusCode != 206) {
+      throw Exception('${response.statusCode} ${response.body}');
+    }
+
+    return Future.value(json.decode(response.body));
+  }
+
+  /// ** This method is untested for the moment **
+  /// Return items found using the GLPI searchEngine
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items)
+  Future<Map<String, dynamic>> searchItems(
+    GlpiItemType itemType, {
+    List<GlpiSearchCriteria>? criteria,
+    List<GlpiSearchCriteria>? metaCriteria,
+    int sort = 1,
+    String order = 'ASC',
+    int rangeStart = 0,
+    int rangeLimit = 50,
+    List<String>? forceDisplay = const [],
+    bool rawData = false,
+    bool withIndexes = false,
+    bool uidCols = false,
+    bool giveItems = false,
+  }) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse(
+        '$baseUrl/searchItems/${itemType.toString().split('.').last}?sort=$sort&order=$order&range_start=$rangeStart&range_limit=$rangeLimit&raw_data=$rawData&with_indexes=$withIndexes&uid_cols=$uidCols&give_items=$giveItems');
+
+    if (criteria != null) {
+      for (var i = 0; i < criteria.length; i++) {
+        uri.queryParameters.addAll(criteria[i].toUrlParameters(i));
+      }
+    }
+
+    if (metaCriteria != null) {
+      for (var i = 0; i < metaCriteria.length; i++) {
+        uri.queryParameters.addAll(metaCriteria[i].toUrlParameters(i));
+      }
+    }
+
+    if (forceDisplay != null) {
+      for (var i = 0; i < forceDisplay.length; i++) {
+        uri.queryParameters.addAll({'force_display[$i]': forceDisplay[i]});
+      }
+    }
+
+    final response = await http.get(uri, headers: headers);
+
+    if (response.statusCode != 200 && response.statusCode != 206) {
+      throw Exception('${response.statusCode} ${response.body}');
+    }
+
+    return Future.value(json.decode(response.body));
+  }
+
+  /// Return the id(s) of the item(s) added using the [data] as input.
+  /// **Don't use this method to upload a document**
+  /// To correctly format the data, see the examples and the documentation.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#add-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#add-items)
+  Future<List<Map<String, String>>> addItems(
+      GlpiItemType itemType, String data) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse('$baseUrl/${itemType.toString().split('.').last}');
+
+    final response = await http.post(uri, headers: headers, body: data);
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw Exception('${response.statusCode} ${response.body}');
+    }
+
+    List<dynamic> decodedJson = json.decode(response.body);
+
+    List<Map<String, String>> formatted = decodedJson.map((element) {
+      return element as Map<String, String>;
     }).toList();
 
     return Future.value(formatted);

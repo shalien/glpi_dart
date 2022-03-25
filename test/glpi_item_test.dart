@@ -91,4 +91,36 @@ void main() {
       expect(items, isList);
     });
   });
+
+  group('Get multiples items', () {
+    setUp(() async {
+      await glpiClientLogin?.initSession();
+      await glpiClientToken?.initSession();
+    });
+    test('Get multiple items with login', () async {
+      final itemsList = [
+        {GlpiItemType.Line: 1},
+        {GlpiItemType.User: 6},
+        {GlpiItemType.Computer: 1},
+      ];
+
+      var items = await glpiClientLogin?.getMultipleItems(itemsList);
+
+      print(items);
+      expect(items, isList);
+    });
+  });
+
+  group('Get searchOptions for Line', () {
+    setUp(() async {
+      await glpiClientLogin?.initSession();
+      await glpiClientToken?.initSession();
+    });
+    test('Get searchOptions for Line with login', () async {
+      var items = await glpiClientLogin?.listSearchOptions(GlpiItemType.Line);
+
+      print(items);
+      expect(items, isMap);
+    });
+  });
 }

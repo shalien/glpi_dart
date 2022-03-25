@@ -4,6 +4,7 @@
 enum GlpiItemType {
   APIClient,
   Alert,
+  AllAssets,
   AuthLDAP,
   AuthLdapReplicate,
   AuthMail,
