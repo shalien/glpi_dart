@@ -178,6 +178,21 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dd>
 
+        <dt id="applyMassiveActions" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/applyMassiveActions.html">applyMassiveActions</a></span><span class="signature">(<wbr><span class="parameter" id="applyMassiveActions-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="applyMassiveActions-param-massiveActionName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">massiveActionName</span>, </span><span class="parameter" id="applyMassiveActions-param-payload"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">payload</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Run the given massive action
+<code>payload</code> Must be a json string with the parameters for the action and the ids of the items to apply the action to.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#apply-massive-action">https://github.com/glpi-project/glpi/blob/master/apirest.md#apply-massive-action</a> 
+  
+
+</dd>
+
         <dt id="changeActiveEntities" class="callable">
   <span class="name"><a href="../glpi_dart/GlpiClient/changeActiveEntities.html">changeActiveEntities</a></span><span class="signature">(<wbr><span class="parameter" id="changeActiveEntities-param-entitiesId"><span class="type-annotation">dynamic</span> <span class="parameter-name">entitiesId</span>, </span><span class="parameter" id="changeActiveEntities-param-recursive">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">recursive</span> = <span class="default-value">false</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
@@ -206,6 +221,50 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
   Change the active profile for the current user.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
 Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile">https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile</a>. 
+  
+
+</dd>
+
+        <dt id="deleteItem" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/deleteItem.html">deleteItem</a></span><span class="signature">(<wbr><span class="parameter" id="deleteItem-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="deleteItem-param-id"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span>, </span><span class="parameter" id="deleteItem-param-forcePurge">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">forcePurge</span> = <span class="default-value">false</span>, </span><span class="parameter" id="deleteItem-param-history"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">history</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the <code>id</code> of the item deleted with true is the deletion is complete.
+<code>forcePurge</code> will delete the item permanently.
+<code>history</code> set to false will prevent the deletion from being added to the global history. 
+  
+
+</dd>
+
+        <dt id="deleteItems" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/deleteItems.html">deleteItems</a></span><span class="signature">(<wbr><span class="parameter" id="deleteItems-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="deleteItems-param-data"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">data</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the ids of the items deleted with true is the deletion is complete.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#delete-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#delete-items</a> 
+  
+
+</dd>
+
+        <dt id="downloadDocument" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/downloadDocument.html">downloadDocument</a></span><span class="signature">(<wbr><span class="parameter" id="downloadDocument-param-id"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Allow to download a <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Document</a>.
+<code>id</code> must be the id of the document to download.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#download-a-document-file">https://github.com/glpi-project/glpi/blob/master/apirest.md#download-a-document-file</a> 
   
 
 </dd>
@@ -300,6 +359,50 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dd>
 
+        <dt id="getMassiveActionParameters" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getMassiveActionParameters.html">getMassiveActionParameters</a></span><span class="signature">(<wbr><span class="parameter" id="getMassiveActionParameters-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="getMassiveActionParameters-param-massiveActionName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">massiveActionName</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Show the availables parameters for a given massive action
+<strong>Warning: experimental endpoint, some required parameters may be missing from the returned content.</strong>
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters</a> 
+  
+
+</dd>
+
+        <dt id="getMassiveActions" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getMassiveActions.html">getMassiveActions</a></span><span class="signature">(<wbr><span class="parameter" id="getMassiveActions-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="getMassiveActions-param-isDeleted">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isDeleted</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the availables massive actions for a given <code>itemtype</code>
+<code>isDeleted</code> (default false): Show specific actions for items in the trashbin
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype</a> 
+  
+
+</dd>
+
+        <dt id="getMassiveActionsItem" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getMassiveActionsItem.html">getMassiveActionsItem</a></span><span class="signature">(<wbr><span class="parameter" id="getMassiveActionsItem-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="getMassiveActionsItem-param-id"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the availables massive actions for a given <code>itemType</code> and <code>id</code>.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item</a> 
+  
+
+</dd>
+
         <dt id="getMultipleItems" class="callable">
   <span class="name"><a href="../glpi_dart/GlpiClient/getMultipleItems.html">getMultipleItems</a></span><span class="signature">(<wbr><span class="parameter" id="getMultipleItems-param-items"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">items</span>, </span><span class="parameter" id="getMultipleItems-param-expandDropdowns">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">expandDropdowns</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-getHateoas"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getHateoas</span> = <span class="default-value">true</span>, </span><span class="parameter" id="getMultipleItems-param-getSha1"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getSha1</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withDevices"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withDevices</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withDisks"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withDisks</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withSoftwares"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withSoftwares</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withConnections"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withConnections</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withNetworkPorts"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withNetworkPorts</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withInfoComs"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withInfoComs</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withContracts"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withContracts</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withDocuments"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withDocuments</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withTickets"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withTickets</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withProblems"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withProblems</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withChanges"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withChanges</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withNotes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withNotes</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-withLogs"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withLogs</span> = <span class="default-value">false</span>, </span><span class="parameter" id="getMultipleItems-param-addKeysNames"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">addKeysNames</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>&gt;</span></span>
@@ -361,6 +464,21 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dd>
 
+        <dt id="getUserProfilePicture" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/getUserProfilePicture.html">getUserProfilePicture</a></span><span class="signature">(<wbr><span class="parameter" id="getUserProfilePicture-param-id"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Get a user's profile picture.
+<code>id</code> must be the id of the user to get the picture.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-a-users-profile-picture">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-a-users-profile-picture</a> 
+  
+
+</dd>
+
         <dt id="initSession" class="callable">
   <span class="name"><a href="../glpi_dart/GlpiClient/initSession.html">initSession</a></span><span class="signature">(<wbr><span class="parameter" id="initSession-param-getFullSession">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getFullSession</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initSession-param-sendInQuery"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">sendInQuery</span> = <span class="default-value">false</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
@@ -369,8 +487,8 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd>
-  Retrieve the session token.
-The token will be stored in the <a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a> field automatically.
+  Request a session token to uses other API endpoints.
+The token will be stored in the <a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a> field automatically and used for all the following requests.
 If <code>getFullSession</code> is set to true, will also return the session details in session.
 If <code>sendInQuery</code> is set to true, will send the credentials in the query string instead of the header.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be initialized.
@@ -439,7 +557,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 </dd>
 
         <dt id="searchItems" class="callable">
-  <span class="name"><a href="../glpi_dart/GlpiClient/searchItems.html">searchItems</a></span><span class="signature">(<wbr><span class="parameter" id="searchItems-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="searchItems-param-criteria">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">GlpiSearchCriteria</span>&gt;</span>?</span> <span class="parameter-name">criteria</span>, </span><span class="parameter" id="searchItems-param-metaCriteria"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">GlpiSearchCriteria</span>&gt;</span>?</span> <span class="parameter-name">metaCriteria</span>, </span><span class="parameter" id="searchItems-param-sort"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">sort</span> = <span class="default-value">1</span>, </span><span class="parameter" id="searchItems-param-order"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">order</span> = <span class="default-value">&#39;ASC&#39;</span>, </span><span class="parameter" id="searchItems-param-rangeStart"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeStart</span> = <span class="default-value">0</span>, </span><span class="parameter" id="searchItems-param-rangeLimit"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeLimit</span> = <span class="default-value">50</span>, </span><span class="parameter" id="searchItems-param-forceDisplay"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">forceDisplay</span> = <span class="default-value">const []</span>, </span><span class="parameter" id="searchItems-param-rawData"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">rawData</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-withIndexes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withIndexes</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-uidCols"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">uidCols</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-giveItems"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">giveItems</span> = <span class="default-value">false</span>}</span>)
+  <span class="name"><a href="../glpi_dart/GlpiClient/searchItems.html">searchItems</a></span><span class="signature">(<wbr><span class="parameter" id="searchItems-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="searchItems-param-criteria">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></span>&gt;</span>?</span> <span class="parameter-name">criteria</span>, </span><span class="parameter" id="searchItems-param-metaCriteria"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></span>&gt;</span>?</span> <span class="parameter-name">metaCriteria</span>, </span><span class="parameter" id="searchItems-param-sort"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">sort</span> = <span class="default-value">1</span>, </span><span class="parameter" id="searchItems-param-order"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">order</span> = <span class="default-value">&#39;ASC&#39;</span>, </span><span class="parameter" id="searchItems-param-rangeStart"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeStart</span> = <span class="default-value">0</span>, </span><span class="parameter" id="searchItems-param-rangeLimit"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeLimit</span> = <span class="default-value">50</span>, </span><span class="parameter" id="searchItems-param-forceDisplay"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">forceDisplay</span> = <span class="default-value">const []</span>, </span><span class="parameter" id="searchItems-param-rawData"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">rawData</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-withIndexes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withIndexes</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-uidCols"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">uidCols</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-giveItems"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">giveItems</span> = <span class="default-value">false</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
@@ -463,6 +581,51 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd class="inherited">
   A string representation of this object. <a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">[...]</a>
   <div class="features">inherited</div>
+
+</dd>
+
+        <dt id="updateItem" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/updateItem.html">updateItem</a></span><span class="signature">(<wbr><span class="parameter" id="updateItem-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="updateItem-param-id"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span>, </span><span class="parameter" id="updateItem-param-data"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">data</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return an arrray with the updated item <code>id</code> and a message.
+To correctly format the data, see the examples and the documentation.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items</a> 
+  
+
+</dd>
+
+        <dt id="updateItems" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/updateItems.html">updateItems</a></span><span class="signature">(<wbr><span class="parameter" id="updateItems-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="updateItems-param-data"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">data</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Return the id(s) of the item(s) updated using the <code>data</code> as input.
+To correctly format the data, see the examples and the documentation.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items</a> 
+  
+
+</dd>
+
+        <dt id="uploadDocument" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/uploadDocument.html">uploadDocument</a></span><span class="signature">(<wbr><span class="parameter" id="uploadDocument-param-file"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-io/File-class.html">File</a></span> <span class="parameter-name">file</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Allow to upload a <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Document</a>.
+<code>file</code> must be a <a href="https://api.flutter.dev/flutter/dart-io/File-class.html">File</a> object.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#upload-a-document-file">https://github.com/glpi-project/glpi/blob/master/apirest.md#upload-a-document-file</a> 
+  
 
 </dd>
 
@@ -511,6 +674,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <ol>
   <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#classes">Classes</a></li>
   <li><a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a></li>
+  <li><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></li>
 
 
 
@@ -519,8 +683,12 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
   <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#enums">Enums</a></li>
   <li><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></li>
+  <li><a href="../glpi_dart/GlpiSearchLink.html">GlpiSearchLink</a></li>
+  <li><a href="../glpi_dart/GlpiSearchType.html">GlpiSearchType</a></li>
 
 
+  <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#exceptions">Exceptions</a></li>
+  <li><a href="../glpi_dart/GlpiException-class.html">GlpiException</a></li>
 </ol>
 
   </div>
@@ -545,18 +713,26 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
     <li class="section-title"><a href="../glpi_dart/GlpiClient-class.html#instance-methods">Methods</a></li>
     <li><a href="../glpi_dart/GlpiClient/addItems.html">addItems</a></li>
+    <li><a href="../glpi_dart/GlpiClient/applyMassiveActions.html">applyMassiveActions</a></li>
     <li><a href="../glpi_dart/GlpiClient/changeActiveEntities.html">changeActiveEntities</a></li>
     <li><a href="../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></li>
+    <li><a href="../glpi_dart/GlpiClient/deleteItem.html">deleteItem</a></li>
+    <li><a href="../glpi_dart/GlpiClient/deleteItems.html">deleteItems</a></li>
+    <li><a href="../glpi_dart/GlpiClient/downloadDocument.html">downloadDocument</a></li>
     <li><a href="../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></li>
     <li><a href="../glpi_dart/GlpiClient/getActiveProfile.html">getActiveProfile</a></li>
     <li><a href="../glpi_dart/GlpiClient/getAllItem.html">getAllItem</a></li>
     <li><a href="../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></li>
     <li><a href="../glpi_dart/GlpiClient/getGlpiConfig.html">getGlpiConfig</a></li>
     <li><a href="../glpi_dart/GlpiClient/getItem.html">getItem</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getMassiveActionParameters.html">getMassiveActionParameters</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getMassiveActions.html">getMassiveActions</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getMassiveActionsItem.html">getMassiveActionsItem</a></li>
     <li><a href="../glpi_dart/GlpiClient/getMultipleItems.html">getMultipleItems</a></li>
     <li><a href="../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></li>
     <li><a href="../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
     <li><a href="../glpi_dart/GlpiClient/getSubItems.html">getSubItems</a></li>
+    <li><a href="../glpi_dart/GlpiClient/getUserProfilePicture.html">getUserProfilePicture</a></li>
     <li><a href="../glpi_dart/GlpiClient/initSession.html">initSession</a></li>
     <li><a href="../glpi_dart/GlpiClient/killSession.html">killSession</a></li>
     <li><a href="../glpi_dart/GlpiClient/listSearchOptions.html">listSearchOptions</a></li>
@@ -564,6 +740,9 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../glpi_dart/GlpiClient/searchItems.html">searchItems</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+    <li><a href="../glpi_dart/GlpiClient/updateItem.html">updateItem</a></li>
+    <li><a href="../glpi_dart/GlpiClient/updateItems.html">updateItems</a></li>
+    <li><a href="../glpi_dart/GlpiClient/uploadDocument.html">uploadDocument</a></li>
 
     <li class="section-title inherited"><a href="../glpi_dart/GlpiClient-class.html#operators">Operators</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
@@ -580,7 +759,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <footer>
   <span class="no-break">
     glpi_dart
-      0.0.1
+      0.1.0
   </span>
 
   

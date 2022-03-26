@@ -1,6 +1,6 @@
 name: glpi_dart
-description: glpi_dart is a dart library to interact with the GLPI's REST API.
-version: 0.0.1
+description: A library to access the GLPI API
+version: 0.1.0
 homepage: https://github.com/shalien/glpi_dart
 repository: https://github.com/shalien/glpi_dart
 issue_tracker: https://github.com/shalien/glpi_dart/issues

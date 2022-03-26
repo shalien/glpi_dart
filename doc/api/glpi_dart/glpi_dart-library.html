@@ -96,8 +96,8 @@ void main() async {
 </code></pre>
 <p>Check the <code>example</code> directory for more examples.</p>
 <h2 id="errors">Errors</h2>
-<p>By design the library will throw an exception if an error occurs.
-The exception will contain the error code and the error message.
+<p>By design the library will throw an <a href="../glpi_dart/GlpiException-class.html">GlpiException</a> if an error occurs during the request.
+The exception will contain the http response code and a <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a> with the error code and the error localized message.
 The error code is the HTTP status code returned by the server.
 The error message is the message returned by the server.</p>
 <p>Methods will also throw an exception if the session token is not set using <a href="../glpi_dart/GlpiClient/initSession.html">GlpiClient.initSession</a>.</p>
@@ -116,6 +116,14 @@ The error message is the message returned by the server.</p>
   A client used to communicate with the GLPI API.
 To create a client you may use either <a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a> or <a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a>.
 The former will create a client with a username and password, the latter with a user token and an app token. 
+</dd>
+
+        <dt id="GlpiSearchCriteria">
+  <span class="name "><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></span> 
+
+</dt>
+<dd>
+  Represent a search criteria to be used in a search request with <a href="../glpi_dart/GlpiClient/searchItems.html">GlpiClient.searchItems</a> 
 </dd>
 
       </dl>
@@ -139,10 +147,43 @@ The former will create a client with a username and password, the latter with a 
 This mean we will keep the GLPI / PHP naming convention for the itemtype. 
 </dd>
 
+        <dt id="GlpiSearchLink">
+  <span class="name "><a href="../glpi_dart/GlpiSearchLink.html">GlpiSearchLink</a></span> 
+
+</dt>
+<dd>
+  Represent both values that can be used inside a search criteria 
+</dd>
+
+        <dt id="GlpiSearchType">
+  <span class="name "><a href="../glpi_dart/GlpiSearchType.html">GlpiSearchType</a></span> 
+
+</dt>
+<dd>
+  Contains all the search types usable inside a search criteria 
+</dd>
+
       </dl>
     </section>
 
 
+    <section class="summary offset-anchor" id="exceptions">
+      <h2>Exceptions / Errors</h2>
+
+      <dl>
+        <dt id="GlpiException">
+  <span class="name "><a href="../glpi_dart/GlpiException-class.html">GlpiException</a></span> 
+
+</dt>
+<dd>
+  A special <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> class is used to handle the errors.
+It contains the error <a href="../glpi_dart/GlpiException/code.html">code</a> and the error code <a href="../glpi_dart/GlpiException/error.html">error</a> and message <a href="../glpi_dart/GlpiException/message.html">message</a> from GLPI's API response.
+The <a href="../glpi_dart/GlpiException/code.html">code</a> will be a HTTP status code.
+The <a href="../glpi_dart/GlpiException/error.html">error</a> will be the error code and <a href="../glpi_dart/GlpiException/message.html">message</a> the error message. 
+</dd>
+
+      </dl>
+    </section>
 
   </div> <!-- /.main-content -->
 
@@ -172,6 +213,7 @@ This mean we will keep the GLPI / PHP naming convention for the itemtype.
     <ol>
   <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#classes">Classes</a></li>
   <li><a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a></li>
+  <li><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></li>
 
 
 
@@ -180,8 +222,12 @@ This mean we will keep the GLPI / PHP naming convention for the itemtype.
 
   <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#enums">Enums</a></li>
   <li><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></li>
+  <li><a href="../glpi_dart/GlpiSearchLink.html">GlpiSearchLink</a></li>
+  <li><a href="../glpi_dart/GlpiSearchType.html">GlpiSearchType</a></li>
 
 
+  <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#exceptions">Exceptions</a></li>
+  <li><a href="../glpi_dart/GlpiException-class.html">GlpiException</a></li>
 </ol>
 
   </div><!--/sidebar-offcanvas-right-->
@@ -191,7 +237,7 @@ This mean we will keep the GLPI / PHP naming convention for the itemtype.
 <footer>
   <span class="no-break">
     glpi_dart
-      0.0.1
+      0.1.0
   </span>
 
   

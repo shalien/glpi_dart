@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:glpi_dart/src/glpi_item_type.dart';
+import 'package:glpi_dart/glpi.dart';
 import 'package:http/http.dart' as http;
 
-import 'glpi_search_criteria.dart';
+import 'dart:io' if (dart.library.js) 'dart:html';
 
 /// A client used to communicate with the GLPI API.
 /// To create a client you may use either [GlpiClient.withLogin] or [GlpiClient.withToken].
@@ -58,8 +58,8 @@ abstract class GlpiClient {
     return glpiClient;
   }
 
-  /// Retrieve the session token.
-  /// The token will be stored in the [sessionToken] field automatically.
+  /// Request a session token to uses other API endpoints.
+  /// The token will be stored in the [sessionToken] field automatically and used for all the following requests.
   /// If [getFullSession] is set to true, will also return the session details in session.
   /// If [sendInQuery] is set to true, will send the credentials in the query string instead of the header.
   /// Will throw an [Exception] if the session can't be initialized.
@@ -137,7 +137,8 @@ abstract class GlpiClient {
     }
 
     if (response.statusCode != 200) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     return true;
@@ -314,7 +315,8 @@ abstract class GlpiClient {
         await http.get(Uri.parse('$baseUrl/getFullSession'), headers: headers);
 
     if (response.statusCode != 200) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     _session = json.decode(response.body);
@@ -338,7 +340,8 @@ abstract class GlpiClient {
         await http.get(Uri.parse('$baseUrl/getGlpiConfig'), headers: headers);
 
     if (response.statusCode != 200) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     return json.decode(response.body);
@@ -401,7 +404,8 @@ abstract class GlpiClient {
     final response = await http.get(uri, headers: headers);
 
     if (response.statusCode != 200) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     return Future.value(json.decode(response.body));
@@ -446,7 +450,8 @@ abstract class GlpiClient {
     final response = await http.get(uri, headers: headers);
 
     if (response.statusCode != 200 && response.statusCode != 206) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     List<dynamic> decodedJson = json.decode(response.body);
@@ -495,7 +500,8 @@ abstract class GlpiClient {
     final response = await http.get(uri, headers: headers);
 
     if (response.statusCode != 200 && response.statusCode != 206) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     List<dynamic> decodedJson = json.decode(response.body);
@@ -567,7 +573,8 @@ abstract class GlpiClient {
     final response = await http.get(uri, headers: headers);
 
     if (response.statusCode != 200 && response.statusCode != 206) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     List<dynamic> decodedJson = json.decode(response.body);
@@ -597,7 +604,8 @@ abstract class GlpiClient {
     final response = await http.get(uri, headers: headers);
 
     if (response.statusCode != 200 && response.statusCode != 206) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     return Future.value(json.decode(response.body));
@@ -654,7 +662,8 @@ abstract class GlpiClient {
     final response = await http.get(uri, headers: headers);
 
     if (response.statusCode != 200 && response.statusCode != 206) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     return Future.value(json.decode(response.body));
@@ -681,7 +690,8 @@ abstract class GlpiClient {
     final response = await http.post(uri, headers: headers, body: data);
 
     if (response.statusCode != 200 && response.statusCode != 207) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     List<dynamic> decodedJson = json.decode(response.body);
@@ -691,6 +701,365 @@ abstract class GlpiClient {
     }).toList();
 
     return Future.value(formatted);
+  }
+
+  /// Return an arrray with the updated item [id] and a message.
+  /// To correctly format the data, see the examples and the documentation.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items)
+  Future<Map<String, String>> updateItem(
+      GlpiItemType itemType, int id, Map<String, dynamic> data) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri =
+        Uri.parse('$baseUrl/${itemType.toString().split('.').last}/$id');
+
+    final response =
+        await http.put(uri, headers: headers, body: json.encode(data));
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    return Future.value(json.decode(response.body));
+  }
+
+  /// Return the id(s) of the item(s) updated using the [data] as input.
+  /// To correctly format the data, see the examples and the documentation.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items)
+  Future<List<Map<String, String>>> updateItems(
+      GlpiItemType itemType, String data) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse('$baseUrl/${itemType.toString().split('.').last}');
+
+    final response = await http.put(uri, headers: headers, body: data);
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    List<dynamic> decodedJson = json.decode(response.body);
+
+    List<Map<String, String>> formatted = decodedJson.map((element) {
+      return element as Map<String, String>;
+    }).toList();
+
+    return Future.value(formatted);
+  }
+
+  /// Return the [id] of the item deleted with true is the deletion is complete.
+  /// [forcePurge] will delete the item permanently.
+  /// [history] set to false will prevent the deletion from being added to the global history.
+  Future<Map<String, String>> deleteItem(GlpiItemType itemType, int id,
+      {bool forcePurge = false, bool history = true}) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse(
+        '$baseUrl/${itemType.toString().split('.').last}/$id?force_purge=$forcePurge&history=$history');
+
+    final response = await http.delete(uri, headers: headers);
+
+    if (response.statusCode != 200 &&
+        response.statusCode != 204 &&
+        response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    return Future.value(json.decode(response.body));
+  }
+
+  /// Return the ids of the items deleted with true is the deletion is complete.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#delete-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#delete-items)
+  Future<List<Map<String, String>>> deleteItems(
+      GlpiItemType itemType, String data) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse('$baseUrl/${itemType.toString().split('.').last}');
+
+    final response = await http.delete(uri, headers: headers, body: data);
+
+    if (response.statusCode != 200 &&
+        response.statusCode != 204 &&
+        response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    List<dynamic> decodedJson = json.decode(response.body);
+
+    List<Map<String, String>> formatted = decodedJson.map((element) {
+      return element as Map<String, String>;
+    }).toList();
+
+    return Future.value(formatted);
+  }
+
+  /// Return the availables massive actions for a given [itemtype]
+  /// [isDeleted] (default false): Show specific actions for items in the trashbin
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype)
+  Future<List<Map<String, String>>> getMassiveActions(GlpiItemType itemType,
+      {bool isDeleted = false}) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse(
+        '$baseUrl/getMassiveActions/${itemType.toString().split('.').last}?is_deleted=$isDeleted');
+
+    final response = await http.get(uri, headers: headers);
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    List<dynamic> decodedJson = json.decode(response.body);
+
+    List<Map<String, String>> formatted = decodedJson.map((element) {
+      return element as Map<String, String>;
+    }).toList();
+
+    return Future.value(formatted);
+  }
+
+  /// Return the availables massive actions for a given [itemType] and [id].
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item)
+  Future<List<Map<String, String>>> getMassiveActionsItem(
+      GlpiItemType itemType, int id) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse(
+        '$baseUrl/getMassiveActions/${itemType.toString().split('.').last}/$id');
+
+    final response = await http.get(uri, headers: headers);
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    List<dynamic> decodedJson = json.decode(response.body);
+
+    List<Map<String, String>> formatted = decodedJson.map((element) {
+      return element as Map<String, String>;
+    }).toList();
+
+    return Future.value(formatted);
+  }
+
+  /// Show the availables parameters for a given massive action
+  /// **Warning: experimental endpoint, some required parameters may be missing from the returned content.**
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters)
+  Future<List<Map<String, String>>> getMassiveActionParameters(
+      GlpiItemType itemType, String massiveActionName) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse(
+        '$baseUrl/getMassiveActionParameters/${itemType.toString().split('.').last}/$massiveActionName');
+
+    final response = await http.get(uri, headers: headers);
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    List<dynamic> decodedJson = json.decode(response.body);
+
+    List<Map<String, String>> formatted = decodedJson.map((element) {
+      return element as Map<String, String>;
+    }).toList();
+
+    return Future.value(formatted);
+  }
+
+  /// Run the given massive action
+  /// [payload] Must be a json string with the parameters for the action and the ids of the items to apply the action to.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#apply-massive-action](https://github.com/glpi-project/glpi/blob/master/apirest.md#apply-massive-action)
+  Future<Map<String, dynamic>> applyMassiveActions(
+      GlpiItemType itemType, String massiveActionName, String payload) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse(
+        '$baseUrl/applyMassiveActions/${itemType.toString().split('.').last}/$massiveActionName');
+
+    final response = await http.post(uri, headers: headers, body: payload);
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    Map<String, dynamic> decodedJson = json.decode(response.body);
+
+    return Future.value(decodedJson);
+  }
+
+  /// Allow to upload a [GlpiItemType.Document].
+  /// [file] must be a [File] object.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#upload-a-document-file](https://github.com/glpi-project/glpi/blob/master/apirest.md#upload-a-document-file)
+  Future<Map<String, dynamic>> uploadDocument(
+    File file,
+  ) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'multipart/form-data',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse('$baseUrl/Document');
+
+    final payload = json.encode({
+      'input': {
+        'name': file.path.split('/').last,
+        '_filename': [base64Encode(file.readAsBytesSync())],
+      }
+    });
+
+    final uploadManifest = '$payload;type=application/json';
+
+    final request = http.MultipartRequest('POST', uri)
+      ..headers.addAll(headers)
+      ..fields['uploadManifest'] = uploadManifest
+      ..files.add(http.MultipartFile.fromBytes(
+        'file',
+        file.readAsBytesSync(),
+        filename: file.path.split('/').last,
+      ));
+
+    final response = await request.send();
+
+    final body = await response.stream.transform(utf8.decoder).join();
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw Exception('${response.statusCode} $body');
+    }
+
+    Map<String, dynamic> decodedJson = json.decode(body);
+
+    return Future.value(decodedJson);
+  }
+
+  /// Allow to download a [GlpiItemType.Document].
+  /// [id] must be the id of the document to download.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#download-a-document-file](https://github.com/glpi-project/glpi/blob/master/apirest.md#download-a-document-file)
+  Future<String> downloadDocument(int id) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      'Accept': 'application/octet-stream',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse('$baseUrl/Document/$id');
+
+    final response = await http.get(uri, headers: headers);
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    return Future.value(response.body);
+  }
+
+  /// Get a user's profile picture.
+  /// [id] must be the id of the user to get the picture.
+  /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-a-users-profile-picture](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-a-users-profile-picture)
+  Future<String> getUserProfilePicture(int id) async {
+    if (_sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': _sessionToken!,
+      'Content-Type': 'application/json',
+      ...?appToken != null ? {'App-Token': appToken!} : null,
+    };
+
+    final uri = Uri.parse('$baseUrl/User/$id/Picture');
+
+    final response = await http.get(uri, headers: headers);
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
+    }
+
+    return Future.value(response.body);
   }
 }
 
@@ -732,7 +1101,8 @@ class _GlpiLoginClient extends GlpiClient {
     }
 
     if (response.statusCode != 200) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
 
     final _json = json.decode(response.body);
@@ -778,7 +1148,8 @@ class _GlpiTokenClient extends GlpiClient {
     }
 
     if (response.statusCode != 200) {
-      throw Exception('${response.statusCode} ${response.body}');
+      throw GlpiException.fromResponse(
+          response.statusCode, json.decode(response.body));
     }
     final _json = json.decode(response.body);
 

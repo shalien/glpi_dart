@@ -45,20 +45,53 @@
       
 <section class="desc markdown">
   <h1 id="glpi-dart">GLPI DART</h1>
-<p>glpi_dart is a dart library to interact with the GLPI's REST API.</p>
-<h2 id="features">Features</h2>
-<p>This library allow to communicate with the glpi's REST API.</p>
-<p>It's still in development</p>
-<h2 id="getting-started">Getting started</h2>
-<p>Either run :
-<code>dart pub add glpi_dart</code></p>
-<p>Or add this in your package.yaml :</p>
-<pre class="language-yml"><code class="language-yml">glpi_dart: ^0.0.1
+<p>A library to access the GLPI API</p>
+<p>This library is a wrapper around the GLPI API, it provides a simple way to access he API.</p>
+<p>It is based on the Dart http library so it can be used ont dartvm and dartweb.
+It was implemented following the <a href="https://github.com/lpi-project/glpi/blob/master/apirest.md">GLPI API documentation</a></p>
+<h2 id="first-step">First step</h2>
+<p>Before using the library, you need to make sure your GLPI instance is correctly etup to enable the api usage.</p>
+<p>First you need to add the library to your pubspec.yaml file.</p>
+<p>Either run</p>
+<pre class="language-dart"><code>dart pub add glpi_dart
+</code></pre>
+<p>or manually add</p>
+<pre class="language-dart"><code> glpi_dart: ^0.0.1
+</code></pre>
+<p>to your pubspec.yaml file.</p>
+<p>Then you can use the library by importing the client.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
 </code></pre>
 <h2 id="usage">Usage</h2>
-<pre class="language-dart"><code class="language-dart">    final GlpiClient glpiClient = GlpiClient.withToken(url, token);
-    await glpiClient.initSession();
+<p>There's two way to create a client to access the API, either by using the lpiClient.withLogin or by using the GlpiClient.withToken constructor.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
+void main() async {
+  // Create a client with login and password
+  GlpiClient client = GlpiClient.withLogin('http://localhost/glpi/apirest.php/', 'username', 'password');
+  //Get the session token
+  await client.initSession();
+  //Then we can start making request for example, gell all the computers
+  try {
+    final computers = await client.getAll(GlpiItemType.Computer);
+  } catch (GlpiExcpetion e) {
+    print('${e.code} - ${e.reason.first}');
+  }
+  //Or get a specific computer
+  try {
+    final computer = await client.getItem(GlpiItemType.Computer, '1');
+  } catch (e) {
+    print('${e.code} - ${e.reason.first}');
+  }
+  //Then we can delete the session
+  await client.killSession();
 </code></pre>
+<p>Check the <code>example</code> directory for more examples.</p>
+<p>##Errors
+By design the library will throw an GlpiException if an error occurs during the request.
+The exception will contain the http response code and a Map with the error code and the error localized message.
+Methods will also throw an exception if the session token is not set using  GlpiClient.initSession.</p>
+<h2 id="testing">Testing</h2>
+<p>Right now all the tests aren't written and/or cleaned</p>
 <h2 id="license">License</h2>
 <p>See LICENSE.md</p>
 <h2 id="additional-information">Additional information</h2>
@@ -109,7 +142,7 @@
 <footer>
   <span class="no-break">
     glpi_dart
-      0.0.1
+      0.1.0
   </span>
 
   

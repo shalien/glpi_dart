@@ -56,8 +56,8 @@
 /// Check the `example` directory for more examples.
 ///
 /// ## Errors
-/// By design the library will throw an exception if an error occurs.
-/// The exception will contain the error code and the error message.
+/// By design the library will throw an [GlpiException] if an error occurs during the request.
+/// The exception will contain the http response code and a [Map] with the error code and the error localized message.
 /// The error code is the HTTP status code returned by the server.
 /// The error message is the message returned by the server.
 ///
@@ -66,5 +66,9 @@
 ///
 library glpi_dart;
 
+export 'src/glpi_exception.dart';
 export 'src/glpi_item_type.dart';
+export 'src/glpi_search_criteria.dart';
+export 'src/glpi_search_link.dart';
+export 'src/glpi_search_type.dart';
 export 'src/glpi_client.dart';

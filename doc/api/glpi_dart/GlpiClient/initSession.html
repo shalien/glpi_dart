@@ -62,8 +62,8 @@
     </section>
     
 <section class="desc markdown">
-  <p>Retrieve the session token.
-The token will be stored in the <a href="../../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a> field automatically.
+  <p>Request a session token to uses other API endpoints.
+The token will be stored in the <a href="../../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a> field automatically and used for all the following requests.
 If <code>getFullSession</code> is set to true, will also return the session details in session.
 If <code>sendInQuery</code> is set to true, will send the credentials in the query string instead of the header.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be initialized.
@@ -116,18 +116,26 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
     <li class="section-title"><a href="../../glpi_dart/GlpiClient-class.html#instance-methods">Methods</a></li>
     <li><a href="../../glpi_dart/GlpiClient/addItems.html">addItems</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/applyMassiveActions.html">applyMassiveActions</a></li>
     <li><a href="../../glpi_dart/GlpiClient/changeActiveEntities.html">changeActiveEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/changeActiveProfile.html">changeActiveProfile</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/deleteItem.html">deleteItem</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/deleteItems.html">deleteItems</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/downloadDocument.html">downloadDocument</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getActiveEntities.html">getActiveEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getActiveProfile.html">getActiveProfile</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getAllItem.html">getAllItem</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getGlpiConfig.html">getGlpiConfig</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getItem.html">getItem</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getMassiveActionParameters.html">getMassiveActionParameters</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getMassiveActions.html">getMassiveActions</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getMassiveActionsItem.html">getMassiveActionsItem</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMultipleItems.html">getMultipleItems</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyEntities.html">getMyEntities</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getSubItems.html">getSubItems</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/getUserProfilePicture.html">getUserProfilePicture</a></li>
     <li><a href="../../glpi_dart/GlpiClient/initSession.html">initSession</a></li>
     <li><a href="../../glpi_dart/GlpiClient/killSession.html">killSession</a></li>
     <li><a href="../../glpi_dart/GlpiClient/listSearchOptions.html">listSearchOptions</a></li>
@@ -135,6 +143,9 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../../glpi_dart/GlpiClient/searchItems.html">searchItems</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/updateItem.html">updateItem</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/updateItems.html">updateItems</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/uploadDocument.html">uploadDocument</a></li>
 
     <li class="section-title inherited"><a href="../../glpi_dart/GlpiClient-class.html#operators">Operators</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
@@ -154,7 +165,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <footer>
   <span class="no-break">
     glpi_dart
-      0.0.1
+      0.1.0
   </span>
 
   

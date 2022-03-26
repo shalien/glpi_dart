@@ -1,8 +1,6 @@
 import 'package:glpi_dart/glpi.dart';
-import 'package:glpi_dart/src/glpi_search_link.dart';
-import 'package:glpi_dart/src/glpi_search_type.dart';
 
-/// Represent a search criteria to be used in a search request with [GlpiClient.search]
+/// Represent a search criteria to be used in a search request with [GlpiClient.searchItems]
 class GlpiSearchCriteria {
   /// The logical link between the search criteria
   GlpiSearchLink? link;
