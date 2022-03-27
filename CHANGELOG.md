@@ -8,3 +8,7 @@ This is the beta release of the package there's still improvements on the way es
 ## 0.1.1
 
 - Fixes for pub plublication (missing file, incorrect import)
+
+## 0.1.2
+
+- Fixes for pub plublication (missing file, incorrect import)

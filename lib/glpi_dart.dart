@@ -14,7 +14,7 @@
 /// ```
 /// or manually add
 /// ```
-///  glpi_dart: ^0.0.1
+///  glpi_dart: ^0.1.2
 /// ```
 /// to your pubspec.yaml file.
 ///
