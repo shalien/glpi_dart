@@ -1,6 +1,9 @@
 name: glpi_dart
-description: A library to access the GLPI API
-version: 0.1.0
+description:  >- 
+  This library is a wrapper around the GLPI API, it provides a simple way to access he API. 
+  It is based on the Dart http library so it can be used ont dartvm and dartweb. 
+  It was implemented following the https://github.com/lpi-project/glpi/blob/master/apirest.md
+version: 0.1.1
 homepage: https://github.com/shalien/glpi_dart
 repository: https://github.com/shalien/glpi_dart
 issue_tracker: https://github.com/shalien/glpi_dart/issues
@@ -15,3 +18,8 @@ dev_dependencies:
   lints: ^1.0.0
   test: ^1.16.0
   dotenv: ^3.0.0
+  dart_code_metrics: ^4.13.0
+
+false_secrets:
+  - /example/lib/*.dart
+  - /test/*.dart

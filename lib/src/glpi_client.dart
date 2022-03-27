@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:glpi_dart/glpi.dart';
 import 'package:http/http.dart' as http;
+import 'glpi_exception.dart';
+import 'glpi_search_criteria.dart';
+import 'glpi_item_type.dart';
 
 import 'dart:io' if (dart.library.js) 'dart:html';
 
