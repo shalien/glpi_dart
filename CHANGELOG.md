@@ -15,3 +15,8 @@ This is the beta release of the package there's still improvements on the way es
 - Fixed numerous typos across the project
 - Fixed example and test import 
 - Fixed import inside glpi_search_criteria.dart
+
+
+## 0.1.4
+
+- Fixing rollback between versions
