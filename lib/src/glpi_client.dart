@@ -415,7 +415,7 @@ abstract class GlpiClient {
 
   /// Return **ALL** the items of the given type the current user can see, depending on your server configuration and the number of items proceeded it may have unexpected results.
   /// [GlpiItemType] contains all the available item types according to the latest GLPI documentation.
-  /// By default, only the 50 firts item will be returned. This can be changed by setting the [rangeStart] parameter and [rangeLimit] parameters.
+  /// By default, only the 50 firsts item will be returned. This can be changed by setting the [rangeStart] parameter and [rangeLimit] parameters.
   /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-all-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-all-items)
   Future<List<dynamic>> getAllItem(GlpiItemType itemType,
       {bool expandDropdowns = false,
@@ -705,7 +705,7 @@ abstract class GlpiClient {
     return Future.value(formatted);
   }
 
-  /// Return an arrray with the updated item [id] and a message.
+  /// Return an array with the updated item [id] and a message.
   /// To correctly format the data, see the examples and the documentation.
   /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items)
   Future<Map<String, String>> updateItem(

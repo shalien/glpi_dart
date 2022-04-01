@@ -8,7 +8,7 @@ It was implemented following the [GLPI API documentation](https://github.com/lpi
 
 
 ## First step
-Before using the library, you need to make sure your GLPI instance is correctly etup to enable the api usage.
+Before using the library, you need to make sure your GLPI instance is correctly setup to enable the api usage.
 
 First you need to add the library to your pubspec.yaml file.
 
@@ -18,7 +18,7 @@ dart pub add glpi_dart
 ```
 or manually add
 ```
- glpi_dart: ^0.0.1
+ glpi_dart: ^0.1.2
 ```
 to your pubspec.yaml file.
 
@@ -39,17 +39,17 @@ void main() async {
   GlpiClient client = GlpiClient.withLogin('http://localhost/glpi/apirest.php/', 'username', 'password');
   //Get the session token
   await client.initSession();
-  //Then we can start making request for example, gell all the computers
+  //Then we can start making request for example, get all the computers
   try {
     final computers = await client.getAll(GlpiItemType.Computer);
-  } catch (GlpiExcpetion e) {
-    print('${e.code} - ${e.reason.first}');
+  } catch (GlpiException e) {
+      print('${e.code} - ${e.error} - ${e.message}');
   }
   //Or get a specific computer
   try {
     final computer = await client.getItem(GlpiItemType.Computer, '1');
   } catch (e) {
-    print('${e.code} - ${e.reason.first}');
+      print('${e.code} - ${e.error} - ${e.message}');
   }
   //Then we can delete the session
   await client.killSession();
@@ -57,7 +57,7 @@ void main() async {
 
 Check the `example` directory for more examples.
 
-##Errors
+## Errors
 By design the library will throw an GlpiException if an error occurs during the request.
 The exception will contain the http response code and a Map with the error code and the error localized message.
 Methods will also throw an exception if the session token is not set using  GlpiClient.initSession.

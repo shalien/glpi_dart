@@ -35,18 +35,18 @@
 ///   //Get the session token
 ///   await client.initSession();
 ///
-///   //Then we can start making request for example, gell all the computers
+///   //Then we can start making request for example, get all all the computers
 ///   try {
 ///     final computers = await client.getAll(GlpiItemType.Computer);
 ///   } catch (e) {
-///    print(e);
+///    print('${e.code} - ${e.error} - ${e.message}');
 ///   }
 ///
 ///   //Or get a specific computer
 ///   try {
 ///     final computer = await client.getItem(GlpiItemType.Computer, '1');
 ///   } catch (e) {
-///     print(e);
+///       print('${e.code} - ${e.error} - ${e.message}');
 ///   }
 ///
 ///   //Then we can delete the session
