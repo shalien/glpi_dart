@@ -10,7 +10,7 @@ This is the beta release of the package there's still improvements on the way es
 - Fixes for pub publication (missing file, incorrect import)
 
 
-## 0.1.2
+## 0.1.3
 
 - Fixed numerous typos across the project
 - Fixed example and test import 
