@@ -20,3 +20,10 @@ This is the beta release of the package there's still improvements on the way es
 ## 0.1.4
 
 - Fixing rollback between versions
+
+
+## 0.1.5
+
+- Fixed and renamed `search` method
+- Added tests for `search` method
+- Added Exception handling on `initSession`

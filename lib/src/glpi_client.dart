@@ -146,7 +146,7 @@ abstract class GlpiClient {
     return true;
   }
 
-  /// Return a [Map] of all the profil for the current user
+  /// Return a [Map] of all the profile for the current user
   /// Profiles are under the key `myprofiles`
   /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles).
   Future<Map<String, dynamic>> getMyProfiles() async {
@@ -616,7 +616,7 @@ abstract class GlpiClient {
   /// ** This method is untested for the moment **
   /// Return items found using the GLPI searchEngine
   /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items](https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items)
-  Future<Map<String, dynamic>> searchItems(
+  Future<Map<String, dynamic>> search(
     GlpiItemType itemType, {
     List<GlpiSearchCriteria>? criteria,
     List<GlpiSearchCriteria>? metaCriteria,
@@ -640,26 +640,31 @@ abstract class GlpiClient {
       ...?appToken != null ? {'App-Token': appToken!} : null,
     };
 
-    final uri = Uri.parse(
-        '$baseUrl/searchItems/${itemType.toString().split('.').last}?sort=$sort&order=$order&range_start=$rangeStart&range_limit=$rangeLimit&raw_data=$rawData&with_indexes=$withIndexes&uid_cols=$uidCols&give_items=$giveItems');
-
+    final queryParameters = <String, String>{};
     if (criteria != null) {
       for (var i = 0; i < criteria.length; i++) {
-        uri.queryParameters.addAll(criteria[i].toUrlParameters(i));
+        queryParameters.addAll(criteria[i].toUrlParameters(i));
       }
     }
 
     if (metaCriteria != null) {
       for (var i = 0; i < metaCriteria.length; i++) {
-        uri.queryParameters.addAll(metaCriteria[i].toUrlParameters(i));
+        queryParameters.addAll(metaCriteria[i].toUrlParameters(i));
       }
     }
 
     if (forceDisplay != null) {
       for (var i = 0; i < forceDisplay.length; i++) {
-        uri.queryParameters.addAll({'force_display[$i]': forceDisplay[i]});
+        queryParameters.addAll({'force_display[$i]': forceDisplay[i]});
       }
     }
+
+    final queryUrl = queryParameters.isNotEmpty
+        ? '&${queryParameters.keys.map((key) => '$key=${queryParameters[key]}').join('&')}'
+        : '';
+
+    final uri = Uri.parse(
+        '$baseUrl/search/${itemType.toString().split('.').last}?sort=$sort&order=$order&range$rangeStart-$rangeLimit&raw_data=$rawData&with_indexes=$withIndexes&uid_cols=$uidCols&give_items=$giveItems$queryUrl');
 
     final response = await http.get(uri, headers: headers);
 
@@ -831,8 +836,8 @@ abstract class GlpiClient {
     return Future.value(formatted);
   }
 
-  /// Return the availables massive actions for a given [itemtype]
-  /// [isDeleted] (default false): Show specific actions for items in the trashbin
+  /// Return the available massive actions for a given [itemtype]
+  /// [isDeleted] (default false): Show specific actions for items in the trash bin
   /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype)
   Future<List<Map<String, String>>> getMassiveActions(GlpiItemType itemType,
       {bool isDeleted = false}) async {
@@ -865,7 +870,7 @@ abstract class GlpiClient {
     return Future.value(formatted);
   }
 
-  /// Return the availables massive actions for a given [itemType] and [id].
+  /// Return the awaitables massive actions for a given [itemType] and [id].
   /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item)
   Future<List<Map<String, String>>> getMassiveActionsItem(
       GlpiItemType itemType, int id) async {
@@ -898,7 +903,7 @@ abstract class GlpiClient {
     return Future.value(formatted);
   }
 
-  /// Show the availables parameters for a given massive action
+  /// Show the awaitables parameters for a given massive action
   /// **Warning: experimental endpoint, some required parameters may be missing from the returned content.**
   /// Reference: [https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters](https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters)
   Future<List<Map<String, String>>> getMassiveActionParameters(
@@ -1107,8 +1112,13 @@ class _GlpiLoginClient extends GlpiClient {
           response.statusCode, json.decode(response.body));
     }
 
-    final _json = json.decode(response.body);
+    late dynamic _json;
 
+    try {
+      _json = json.decode(response.body);
+    } catch (e) {
+      throw Exception('Unable to decode json ${response.body}');
+    }
     _sessionToken = _json['session_token'] as String;
 
     if (getFullSession) {
@@ -1153,7 +1163,13 @@ class _GlpiTokenClient extends GlpiClient {
       throw GlpiException.fromResponse(
           response.statusCode, json.decode(response.body));
     }
-    final _json = json.decode(response.body);
+    late dynamic _json;
+
+    try {
+      _json = json.decode(response.body);
+    } catch (e) {
+      throw Exception('Unable to decode json ${response.body}');
+    }
 
     _sessionToken = _json['session_token'] as String;
 
