@@ -27,3 +27,7 @@ This is the beta release of the package there's still improvements on the way es
 - Fixed and renamed `search` method
 - Added tests for `search` method
 - Added Exception handling on `initSession`
+
+## 0.1.6
+
+- Small refactor and typos fixes
