@@ -66,9 +66,11 @@
 ///
 library glpi_dart;
 
+export 'src/glpi_client.dart';
+export 'src/client/glpi_client_base.dart';
+
 export 'src/glpi_exception.dart';
 export 'src/glpi_item_type.dart';
 export 'src/glpi_search_criteria.dart';
 export 'src/glpi_search_link.dart';
 export 'src/glpi_search_type.dart';
-export 'src/glpi_client.dart';
