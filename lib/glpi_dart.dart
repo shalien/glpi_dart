@@ -35,18 +35,18 @@
 ///   //Get the session token
 ///   await client.initSession();
 ///
-///   //Then we can start making request for example, gell all the computers
+///   //Then we can start making request for example, get all all the computers
 ///   try {
 ///     final computers = await client.getAll(GlpiItemType.Computer);
 ///   } catch (e) {
-///    print(e);
+///    print('${e.code} - ${e.error} - ${e.message}');
 ///   }
 ///
 ///   //Or get a specific computer
 ///   try {
 ///     final computer = await client.getItem(GlpiItemType.Computer, '1');
 ///   } catch (e) {
-///     print(e);
+///       print('${e.code} - ${e.error} - ${e.message}');
 ///   }
 ///
 ///   //Then we can delete the session
@@ -66,9 +66,11 @@
 ///
 library glpi_dart;
 
+export 'src/glpi_client.dart';
+export 'src/client/glpi_client_base.dart';
+
 export 'src/glpi_exception.dart';
 export 'src/glpi_item_type.dart';
 export 'src/glpi_search_criteria.dart';
 export 'src/glpi_search_link.dart';
 export 'src/glpi_search_type.dart';
-export 'src/glpi_client.dart';

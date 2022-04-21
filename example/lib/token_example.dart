@@ -1,4 +1,4 @@
-import 'package:glpi_dart/glpi.dart';
+import 'package:glpi_dart/glpi_dart.dart';
 
 void main() async {
   // We recommend to use a secret management library like dotenv

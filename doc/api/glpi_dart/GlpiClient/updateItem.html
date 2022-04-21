@@ -32,7 +32,7 @@
     <li><a href="../../index.html">glpi_dart</a></li>
     <li><a href="../../glpi_dart/glpi_dart-library.html">glpi_dart</a></li>
     <li><a href="../../glpi_dart/GlpiClient-class.html">GlpiClient</a></li>
-    <li class="self-crumb">updateItem method</li>
+    <li class="self-crumb">updateItem abstract method</li>
   </ol>
   <div class="self-name">updateItem</div>
   <form class="search navbar-right" role="search">
@@ -63,7 +63,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Return an arrray with the updated item <code>id</code> and a message.
+  <p>Return an array with the updated item <code>id</code> and a message.
 To correctly format the data, see the examples and the documentation.
 Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items</a></p>
 </section>
@@ -73,30 +73,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;Map&lt;String, String&gt;&gt; updateItem(
-    GlpiItemType itemType, int id, Map&lt;String, dynamic&gt; data) async {
-  if (_sessionToken!.isEmpty) {
-    throw Exception(&#39;No session token, initSession first&#39;);
-  }
-
-  final Map&lt;String, String&gt; headers = {
-    &#39;Session-Token&#39;: _sessionToken!,
-    &#39;Content-Type&#39;: &#39;application&#47;json&#39;,
-    ...?appToken != null ? {&#39;App-Token&#39;: appToken!} : null,
-  };
-
-  final uri =
-      Uri.parse(&#39;$baseUrl&#47;${itemType.toString().split(&#39;.&#39;).last}&#47;$id&#39;);
-
-  final response =
-      await http.put(uri, headers: headers, body: json.encode(data));
-
-  if (response.statusCode != 200 &amp;&amp; response.statusCode != 207) {
-    throw GlpiException.fromResponse(
-        response.statusCode, json.decode(response.body));
-  }
-
-  return Future.value(json.decode(response.body));
-}</code></pre>
+    GlpiItemType itemType, int id, Map&lt;String, dynamic&gt; data);</code></pre>
 </section>
 
 
@@ -113,26 +90,24 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
   <li><a href="../../index.html">glpi_dart</a></li>
   <li><a href="../../glpi_dart/glpi_dart-library.html">glpi_dart</a></li>
   <li><a href="../../glpi_dart/GlpiClient-class.html">GlpiClient</a></li>
-  <li class="self-crumb">updateItem method</li>
+  <li class="self-crumb">updateItem abstract method</li>
 </ol>
 
 
     <h5>GlpiClient class</h5>
     <ol>
 
-    <li class="section-title"><a href="../../glpi_dart/GlpiClient-class.html#constructors">Constructors</a></li>
-    <li><a href="../../glpi_dart/GlpiClient/GlpiClient.withLogin.html">withLogin</a></li>
-    <li><a href="../../glpi_dart/GlpiClient/GlpiClient.withToken.html">withToken</a></li>
+        <li class="section-title"><a href="../../glpi_dart/GlpiClient-class.html#constructors">Constructors</a></li>
+          <li><a href="../../glpi_dart/GlpiClient/GlpiClient.html">GlpiClient</a></li>
 
 
     <li class="section-title">
       <a href="../../glpi_dart/GlpiClient-class.html#instance-properties">Properties</a>
     </li>
     <li><a href="../../glpi_dart/GlpiClient/appToken.html">appToken</a></li>
-    <li><a href="../../glpi_dart/GlpiClient/baseUrl.html">baseUrl</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/host.html">host</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
-    <li><a href="../../glpi_dart/GlpiClient/session.html">session</a></li>
     <li><a href="../../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a></li>
 
     <li class="section-title"><a href="../../glpi_dart/GlpiClient-class.html#instance-methods">Methods</a></li>
@@ -157,12 +132,13 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <li><a href="../../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getSubItems.html">getSubItems</a></li>
     <li><a href="../../glpi_dart/GlpiClient/getUserProfilePicture.html">getUserProfilePicture</a></li>
-    <li><a href="../../glpi_dart/GlpiClient/initSession.html">initSession</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/initSessionUsernamePassword.html">initSessionUsernamePassword</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/initSessionUserToken.html">initSessionUserToken</a></li>
     <li><a href="../../glpi_dart/GlpiClient/killSession.html">killSession</a></li>
     <li><a href="../../glpi_dart/GlpiClient/listSearchOptions.html">listSearchOptions</a></li>
     <li><a href="../../glpi_dart/GlpiClient/lostPassword.html">lostPassword</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-    <li><a href="../../glpi_dart/GlpiClient/searchItems.html">searchItems</a></li>
+    <li><a href="../../glpi_dart/GlpiClient/search.html">search</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
     <li><a href="../../glpi_dart/GlpiClient/updateItem.html">updateItem</a></li>
     <li><a href="../../glpi_dart/GlpiClient/updateItems.html">updateItems</a></li>
@@ -186,7 +162,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <footer>
   <span class="no-break">
     glpi_dart
-      0.1.0
+      0.1.6
   </span>
 
   

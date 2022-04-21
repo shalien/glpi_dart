@@ -52,33 +52,45 @@
     
 <section class="desc markdown">
   <p>A client used to communicate with the GLPI API.
-To create a client you may use either <a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a> or <a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a>.
+To create a client you may use either <code>GlpiClient.withLogin</code> or <code>GlpiClient.withToken</code>.
 The former will create a client with a username and password, the latter with a user token and an app token.</p>
 </section>
 
 
+    <section>
+      <dl class="dl-horizontal">
+        
 
-    <section class="summary offset-anchor" id="constructors">
-      <h2>Constructors</h2>
+        
+        
 
-      <dl class="constructor-summary-list">
-        <dt id="GlpiClient.withLogin" class="callable">
-          <span class="name"><a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a></span><span class="signature">(<span class="parameter" id="withLogin-param-baseUrl"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">baseUrl</span>, </span><span class="parameter" id="withLogin-param-username"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">username</span>, </span><span class="parameter" id="withLogin-param-password"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">password</span>, </span><span class="parameter" id="withLogin-param-appToken">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">appToken</span>}</span>)</span>
-        </dt>
-        <dd>
-          Return a new instance of <a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a> using the given <code>baseUrl</code> and credentials (<code>username</code> / <code>password</code>). 
-          <div class="constructor-modifier features">factory</div>
-        </dd>
-        <dt id="GlpiClient.withToken" class="callable">
-          <span class="name"><a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a></span><span class="signature">(<span class="parameter" id="withToken-param-baseUrl"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">baseUrl</span>, </span><span class="parameter" id="withToken-param-userToken"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">userToken</span>, </span><span class="parameter" id="withToken-param-appToken"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">appToken</span></span>)</span>
-        </dt>
-        <dd>
-          Return a new instance of <a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a> using the given <code>baseUrl</code> and user_token <code>userToken</code> and app_token <code>appToken</code>.
-Unlike <a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a>, this method <strong>require</strong> an app_token to work. 
-          <div class="constructor-modifier features">factory</div>
-        </dd>
+        <dt>Implementers</dt>
+        <dd><ul class="comma-separated clazz-relationships">
+          <li><a href="../glpi_dart/GlpiClientBase-class.html">GlpiClientBase</a></li>
+        </ul></dd>
+
+
+        
       </dl>
     </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+
+    <dl class="constructor-summary-list">
+        <dt id="GlpiClient" class="callable">
+          <span class="name"><a href="../glpi_dart/GlpiClient/GlpiClient.html">GlpiClient</a></span><span class="signature">(<span class="parameter" id="-param-host"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">host</span>, </span><span class="parameter" id="-param-appToken">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">appToken</span>, </span><span class="parameter" id="-param-sessionToken"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">sessionToken</span>}</span>)</span>
+        </dt>
+        <dd>
+          Create a <a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a> .
+<code>host</code> is the server address, it should end with <code>/apirest.php/</code> or be redirected to it.
+<code>appToken</code> is the app token used to authenticate the client.
+<code>sessionToken</code> is the session token used to authenticate the client which can be used from a previous session.
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+    </dl>
+  </section>
 
     <section class="summary offset-anchor" id="instance-properties">
       <h2>Properties</h2>
@@ -90,22 +102,9 @@ Unlike <a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.wi
 
 </dt>
 <dd>
-  The app token used to authenticate the client.
-It's mandatory when using the <a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a> constructor.
-Also if you have setup a AppToken within your GLPI configuration, the token <strong>will be mandatory</strong> for all your requests. 
+  The <a href="../glpi_dart/GlpiClient/appToken.html">appToken</a> used to authenticate the requests.
+Can be set either a construction or later
   <div class="features">read / write</div>
-
-</dd>
-
-        <dt id="baseUrl" class="property">
-  <span class="name"><a href="../glpi_dart/GlpiClient/baseUrl.html">baseUrl</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
-
-</dt>
-<dd>
-  The base url of the GLPI API.
-Example https//example.com/glpi/apirest.php/ 
-  <div class="features">final</div>
 
 </dd>
 
@@ -115,8 +114,19 @@ Example https//example.com/glpi/apirest.php/
 
 </dt>
 <dd class="inherited">
-  The hash code for this object. <a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">[...]</a>
+  The hash code for this object.
   <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="host" class="property">
+  <span class="name"><a href="../glpi_dart/GlpiClient/host.html">host</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
+
+</dt>
+<dd>
+  The server host should either end with <code>apirest.php</code> or redirect on it.
+  <div class="features">read-only</div>
 
 </dd>
 
@@ -126,42 +136,33 @@ Example https//example.com/glpi/apirest.php/
 
 </dt>
 <dd class="inherited">
-  A representation of the runtime type of the object. 
+  A representation of the runtime type of the object.
   <div class="features">read-only, inherited</div>
-
-</dd>
-
-        <dt id="session" class="property">
-  <span class="name"><a href="../glpi_dart/GlpiClient/session.html">session</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span> 
-
-</dt>
-<dd>
-  The session data for the current <a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a>
-Can be set using <a href="../glpi_dart/GlpiClient/initSession.html">initSession</a> with <code>getFullSession</code> parameter set to true or <a href="../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a>
-If trying to get the session <strong>before</strong> calling <a href="../glpi_dart/GlpiClient/initSession.html">initSession</a> or <a href="../glpi_dart/GlpiClient/getFullSession.html">getFullSession</a> will throw an exception. 
-  <div class="features">read-only</div>
 
 </dd>
 
         <dt id="sessionToken" class="property">
   <span class="name"><a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> 
 
 </dt>
 <dd>
-  The session token get whe using <a href="../glpi_dart/GlpiClient/initSession.html">initSession</a>.
-The session token is managed by the client automatically. 
-  <div class="features">read-only</div>
+  The <a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a> used to authenticate the requests.
+Can be stored between session and used to construct a new client without calling <a href="../glpi_dart/GlpiClient/initSessionUserToken.html">initSessionUserToken</a> or <a href="../glpi_dart/GlpiClient/initSessionUserToken.html">initSessionUserToken</a>.
+Can be set either a construction or later
+  <div class="features">read / write</div>
 
 </dd>
 
       </dl>
     </section>
 
-    <section class="summary offset-anchor" id="instance-methods">
-      <h2>Methods</h2>
-      <dl class="callables">
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
         <dt id="addItems" class="callable">
   <span class="name"><a href="../glpi_dart/GlpiClient/addItems.html">addItems</a></span><span class="signature">(<wbr><span class="parameter" id="addItems-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="addItems-param-data"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">data</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>&gt;</span></span>
@@ -173,7 +174,7 @@ The session token is managed by the client automatically.
   Return the id(s) of the item(s) added using the <code>data</code> as input.
 <strong>Don't use this method to upload a document</strong>
 To correctly format the data, see the examples and the documentation.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#add-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#add-items</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#add-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#add-items</a>
   
 
 </dd>
@@ -188,7 +189,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Run the given massive action
 <code>payload</code> Must be a json string with the parameters for the action and the ids of the items to apply the action to.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#apply-massive-action">https://github.com/glpi-project/glpi/blob/master/apirest.md#apply-massive-action</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#apply-massive-action">https://github.com/glpi-project/glpi/blob/master/apirest.md#apply-massive-action</a>
   
 
 </dd>
@@ -205,7 +206,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <code>entitiesId</code> can either be the numerical id of the entity or <code>all</code> to load all the entities.
 <code>recursive</code> can be set to true to load all the sub-entities.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-entities</a>
   
 
 </dd>
@@ -220,7 +221,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Change the active profile for the current user.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile">https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile</a>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile">https://github.com/glpi-project/glpi/blob/master/apirest.md#change-active-profile</a>.
   
 
 </dd>
@@ -235,7 +236,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Return the <code>id</code> of the item deleted with true is the deletion is complete.
 <code>forcePurge</code> will delete the item permanently.
-<code>history</code> set to false will prevent the deletion from being added to the global history. 
+<code>history</code> set to false will prevent the deletion from being added to the global history.
   
 
 </dd>
@@ -249,7 +250,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 </dt>
 <dd>
   Return the ids of the items deleted with true is the deletion is complete.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#delete-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#delete-items</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#delete-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#delete-items</a>
   
 
 </dd>
@@ -264,7 +265,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Allow to download a <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Document</a>.
 <code>id</code> must be the id of the document to download.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#download-a-document-file">https://github.com/glpi-project/glpi/blob/master/apirest.md#download-a-document-file</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#download-a-document-file">https://github.com/glpi-project/glpi/blob/master/apirest.md#download-a-document-file</a>
   
 
 </dd>
@@ -278,7 +279,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 </dt>
 <dd>
   Return the current active entity for the current user as a <code>Map</code>
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-entities</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-entities</a>
   
 
 </dd>
@@ -292,7 +293,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 </dt>
 <dd>
   Return the current active profile for the current user as a <code>Map</code>
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-profile">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-profile</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-profile">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-active-profile</a>
   
 
 </dd>
@@ -307,8 +308,8 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Return <strong>ALL</strong> the items of the given type the current user can see, depending on your server configuration and the number of items proceeded it may have unexpected results.
 <a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a> contains all the available item types according to the latest GLPI documentation.
-By default, only the 50 firts item will be returned. This can be changed by setting the <code>rangeStart</code> parameter and <code>rangeLimit</code> parameters.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-all-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-all-items</a> 
+By default, only the 50 firsts item will be returned. This can be changed by setting the <code>rangeStart</code> parameter and <code>rangeLimit</code> parameters.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-all-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-all-items</a>
   
 
 </dd>
@@ -323,7 +324,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Return the session data include in the php $_SESSION.
 For the moment it's just a <code>Map</code> of the json response.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-full-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-full-session</a>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-full-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-full-session</a>.
   
 
 </dd>
@@ -337,7 +338,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 </dt>
 <dd>
   Return the Glpi instance configuration data inside a <code>Map</code>.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-glpi-config">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-glpi-config</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-glpi-config">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-glpi-config</a>
   
 
 </dd>
@@ -354,7 +355,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
 <code>withDevices</code> will be ignored if the <code>itemtype</code> isn't <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Computer</a>,<a href="../glpi_dart/GlpiItemType.html">GlpiItemType.NetworkEquipment</a>,<a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Peripheral</a>,<a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Phone</a> or <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Printer</a>.
 <code>withDisks</code>, <code>withSoftwares</code>, <code>withConnections</code> will be ignored if the <code>itemtype</code> isn't <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Computer</a>.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-an-item">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-an-item</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-an-item">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-an-item</a>
   
 
 </dd>
@@ -367,9 +368,9 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd>
-  Show the availables parameters for a given massive action
+  Show the awaitables parameters for a given massive action
 <strong>Warning: experimental endpoint, some required parameters may be missing from the returned content.</strong>
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-massive-action-parameters</a>
   
 
 </dd>
@@ -382,9 +383,9 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd>
-  Return the availables massive actions for a given <code>itemtype</code>
-<code>isDeleted</code> (default false): Show specific actions for items in the trashbin
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype</a> 
+  Return the available massive actions for a given <code>itemtype</code>
+<code>isDeleted</code> (default false): Show specific actions for items in the trash bin
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-itemtype</a>
   
 
 </dd>
@@ -397,8 +398,8 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd>
-  Return the availables massive actions for a given <code>itemType</code> and <code>id</code>.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item</a> 
+  Return the awaitables massive actions for a given <code>itemType</code> and <code>id</code>.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-available-massive-actions-for-an-item</a>
   
 
 </dd>
@@ -413,7 +414,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Return multiples items from many types.
 You must pass a <code>List</code> of <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a> with the following structure a <a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a> as the key and the id of the item as the value.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-multiple-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-multiple-items</a>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-multiple-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-multiple-items</a>.
   
 
 </dd>
@@ -429,7 +430,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
   Return the entities list for the current user.
 Setting <code>isRecursive</code> to true will get the list of all the entities and sub-entities.
 Entities are under the key <code>myentities</code>
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-entities</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-entities">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-entities</a>
   
 
 </dd>
@@ -442,9 +443,9 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd>
-  Return a <code>Map</code> of all the profil for the current user
+  Return a <code>Map</code> of all the profile for the current user
 Profiles are under the key <code>myprofiles</code>
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles</a>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-my-profiles</a>.
   
 
 </dd>
@@ -459,7 +460,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Return the sub-items of <code>subItemType</code> the item identified by the <code>mainItemId</code> and of type <code>mainItemtype</code>
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the request fails or if the selected id is incorrect.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-sub-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-sub-items</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-sub-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-sub-items</a>
   
 
 </dd>
@@ -474,25 +475,41 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Get a user's profile picture.
 <code>id</code> must be the id of the user to get the picture.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-a-users-profile-picture">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-a-users-profile-picture</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#get-a-users-profile-picture">https://github.com/glpi-project/glpi/blob/master/apirest.md#get-a-users-profile-picture</a>
   
 
 </dd>
 
-        <dt id="initSession" class="callable">
-  <span class="name"><a href="../glpi_dart/GlpiClient/initSession.html">initSession</a></span><span class="signature">(<wbr><span class="parameter" id="initSession-param-getFullSession">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getFullSession</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initSession-param-sendInQuery"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">sendInQuery</span> = <span class="default-value">false</span>}</span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+        <dt id="initSessionUsernamePassword" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/initSessionUsernamePassword.html">initSessionUsernamePassword</a></span><span class="signature">(<wbr><span class="parameter" id="initSessionUsernamePassword-param-username"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">username</span>, </span><span class="parameter" id="initSessionUsernamePassword-param-password"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">password</span>, </span><span class="parameter" id="initSessionUsernamePassword-param-getFullSession">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getFullSession</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initSessionUsernamePassword-param-sendInQuery"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">sendInQuery</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  Request a session token to uses other API endpoints.
-The token will be stored in the <a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a> field automatically and used for all the following requests.
+  Request a session token to uses other API endpoints using a <code>username</code> and <code>password</code>.
 If <code>getFullSession</code> is set to true, will also return the session details in session.
 If <code>sendInQuery</code> is set to true, will send the credentials in the query string instead of the header.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be initialized.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session</a>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session</a>.
+  
+
+</dd>
+
+        <dt id="initSessionUserToken" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/initSessionUserToken.html">initSessionUserToken</a></span><span class="signature">(<wbr><span class="parameter" id="initSessionUserToken-param-userToken"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">userToken</span>, </span><span class="parameter" id="initSessionUserToken-param-getFullSession">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getFullSession</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initSessionUserToken-param-sendInQuery"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">sendInQuery</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Request a session token to uses other API endpoints using a <code>userToken</code>.
+If <code>getFullSession</code> is set to true, will also return the session details in session.
+If <code>sendInQuery</code> is set to true, will send the credentials in the query string instead of the header.
+Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be initialized.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#init-session</a>.
   
 
 </dd>
@@ -507,7 +524,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Return <code>true</code> if the client is successfully disconnected from the API.
 Will throw an <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> if the session can't be disconnected.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#kill-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#kill-session</a>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#kill-session">https://github.com/glpi-project/glpi/blob/master/apirest.md#kill-session</a>.
   
 
 </dd>
@@ -520,7 +537,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd>
-  Return all the searchOptions usable in <a href="../glpi_dart/GlpiClient/searchItems.html">searchItems</a> criteria for a given <a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a>. 
+  Return all the searchOptions usable in <code>searchItems</code> criteria for a given <a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a>.
   
 
 </dd>
@@ -538,7 +555,7 @@ Return true if the request is successful BUT this doesn't mean that your glpi is
 Check the glpi's configuration to see the prerequisites (notifications need to be enabled).
 If <code>passwordForgetToken</code> AND <code>newPassword</code> are set, the password will be changed with the value of <code>newPassword</code> instead.
 Sending <code>passwordForgetToken</code> without <code>newPassword</code> and the opposite will throw an <a href="https://api.flutter.dev/flutter/dart-core/ArgumentError-class.html">ArgumentError</a>.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#lost-password">https://github.com/glpi-project/glpi/blob/master/apirest.md#lost-password</a>. 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#lost-password">https://github.com/glpi-project/glpi/blob/master/apirest.md#lost-password</a>.
   
 
 </dd>
@@ -551,13 +568,13 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd class="inherited">
-  Invoked when a non-existent method or property is accessed. <a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">[...]</a>
+  Invoked when a non-existent method or property is accessed.
   <div class="features">inherited</div>
 
 </dd>
 
-        <dt id="searchItems" class="callable">
-  <span class="name"><a href="../glpi_dart/GlpiClient/searchItems.html">searchItems</a></span><span class="signature">(<wbr><span class="parameter" id="searchItems-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="searchItems-param-criteria">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></span>&gt;</span>?</span> <span class="parameter-name">criteria</span>, </span><span class="parameter" id="searchItems-param-metaCriteria"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></span>&gt;</span>?</span> <span class="parameter-name">metaCriteria</span>, </span><span class="parameter" id="searchItems-param-sort"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">sort</span> = <span class="default-value">1</span>, </span><span class="parameter" id="searchItems-param-order"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">order</span> = <span class="default-value">&#39;ASC&#39;</span>, </span><span class="parameter" id="searchItems-param-rangeStart"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeStart</span> = <span class="default-value">0</span>, </span><span class="parameter" id="searchItems-param-rangeLimit"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeLimit</span> = <span class="default-value">50</span>, </span><span class="parameter" id="searchItems-param-forceDisplay"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">forceDisplay</span> = <span class="default-value">const []</span>, </span><span class="parameter" id="searchItems-param-rawData"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">rawData</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-withIndexes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withIndexes</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-uidCols"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">uidCols</span> = <span class="default-value">false</span>, </span><span class="parameter" id="searchItems-param-giveItems"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">giveItems</span> = <span class="default-value">false</span>}</span>)
+        <dt id="search" class="callable">
+  <span class="name"><a href="../glpi_dart/GlpiClient/search.html">search</a></span><span class="signature">(<wbr><span class="parameter" id="search-param-itemType"><span class="type-annotation"><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> <span class="parameter-name">itemType</span>, </span><span class="parameter" id="search-param-criteria">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></span>&gt;</span>?</span> <span class="parameter-name">criteria</span>, </span><span class="parameter" id="search-param-metaCriteria"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></span>&gt;</span>?</span> <span class="parameter-name">metaCriteria</span>, </span><span class="parameter" id="search-param-sort"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">sort</span> = <span class="default-value">1</span>, </span><span class="parameter" id="search-param-order"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">order</span> = <span class="default-value">&#39;ASC&#39;</span>, </span><span class="parameter" id="search-param-rangeStart"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeStart</span> = <span class="default-value">0</span>, </span><span class="parameter" id="search-param-rangeLimit"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">rangeLimit</span> = <span class="default-value">50</span>, </span><span class="parameter" id="search-param-forceDisplay"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">forceDisplay</span> = <span class="default-value">const []</span>, </span><span class="parameter" id="search-param-rawData"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">rawData</span> = <span class="default-value">false</span>, </span><span class="parameter" id="search-param-withIndexes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">withIndexes</span> = <span class="default-value">false</span>, </span><span class="parameter" id="search-param-uidCols"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">uidCols</span> = <span class="default-value">false</span>, </span><span class="parameter" id="search-param-giveItems"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">giveItems</span> = <span class="default-value">false</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
@@ -566,7 +583,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   ** This method is untested for the moment **
 Return items found using the GLPI searchEngine
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items</a>
   
 
 </dd>
@@ -579,7 +596,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd class="inherited">
-  A string representation of this object. <a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">[...]</a>
+  A string representation of this object.
   <div class="features">inherited</div>
 
 </dd>
@@ -592,9 +609,9 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd>
-  Return an arrray with the updated item <code>id</code> and a message.
+  Return an array with the updated item <code>id</code> and a message.
 To correctly format the data, see the examples and the documentation.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items</a>
   
 
 </dd>
@@ -609,13 +626,13 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <dd>
   Return the id(s) of the item(s) updated using the <code>data</code> as input.
 To correctly format the data, see the examples and the documentation.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items</a> 
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items">https://github.com/glpi-project/glpi/blob/master/apirest.md#update-items</a>
   
 
 </dd>
 
         <dt id="uploadDocument" class="callable">
-  <span class="name"><a href="../glpi_dart/GlpiClient/uploadDocument.html">uploadDocument</a></span><span class="signature">(<wbr><span class="parameter" id="uploadDocument-param-file"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-io/File-class.html">File</a></span> <span class="parameter-name">file</span></span>)
+  <span class="name"><a href="../glpi_dart/GlpiClient/uploadDocument.html">uploadDocument</a></span><span class="signature">(<wbr><span class="parameter" id="uploadDocument-param-file"><span>covariant</span> <span class="type-annotation">dynamic</span> <span class="parameter-name">file</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
@@ -623,18 +640,21 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 </dt>
 <dd>
   Allow to upload a <a href="../glpi_dart/GlpiItemType.html">GlpiItemType.Document</a>.
-<code>file</code> must be a <a href="https://api.flutter.dev/flutter/dart-io/File-class.html">File</a> object.
-Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#upload-a-document-file">https://github.com/glpi-project/glpi/blob/master/apirest.md#upload-a-document-file</a> 
+<code>file</code> must be a <a href="https://api.flutter.dev/flutter/dart-html/File-class.html">File</a> object.
+Unsupported on the web.
+Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#upload-a-document-file">https://github.com/glpi-project/glpi/blob/master/apirest.md#upload-a-document-file</a>
   
 
 </dd>
 
-      </dl>
-    </section>
-
-    <section class="summary offset-anchor inherited" id="operators">
-      <h2>Operators</h2>
-      <dl class="callables">
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
         <dt id="operator ==" class="callable inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
@@ -643,15 +663,16 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd class="inherited">
-  The equality operator. <a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">[...]</a>
+  The equality operator.
   <div class="features">inherited</div>
 
 </dd>
 
-      </dl>
-    </section>
-
-
+    </dl>
+  </section>
+    
+    
+    
 
 
   </div> <!-- /.main-content -->
@@ -674,6 +695,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <ol>
   <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#classes">Classes</a></li>
   <li><a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a></li>
+  <li><a href="../glpi_dart/GlpiClientBase-class.html">GlpiClientBase</a></li>
   <li><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></li>
 
 
@@ -696,19 +718,17 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
     <ol>
 
-    <li class="section-title"><a href="../glpi_dart/GlpiClient-class.html#constructors">Constructors</a></li>
-    <li><a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">withLogin</a></li>
-    <li><a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">withToken</a></li>
+        <li class="section-title"><a href="../glpi_dart/GlpiClient-class.html#constructors">Constructors</a></li>
+          <li><a href="../glpi_dart/GlpiClient/GlpiClient.html">GlpiClient</a></li>
 
 
     <li class="section-title">
       <a href="../glpi_dart/GlpiClient-class.html#instance-properties">Properties</a>
     </li>
     <li><a href="../glpi_dart/GlpiClient/appToken.html">appToken</a></li>
-    <li><a href="../glpi_dart/GlpiClient/baseUrl.html">baseUrl</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li><a href="../glpi_dart/GlpiClient/host.html">host</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
-    <li><a href="../glpi_dart/GlpiClient/session.html">session</a></li>
     <li><a href="../glpi_dart/GlpiClient/sessionToken.html">sessionToken</a></li>
 
     <li class="section-title"><a href="../glpi_dart/GlpiClient-class.html#instance-methods">Methods</a></li>
@@ -733,12 +753,13 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
     <li><a href="../glpi_dart/GlpiClient/getMyProfiles.html">getMyProfiles</a></li>
     <li><a href="../glpi_dart/GlpiClient/getSubItems.html">getSubItems</a></li>
     <li><a href="../glpi_dart/GlpiClient/getUserProfilePicture.html">getUserProfilePicture</a></li>
-    <li><a href="../glpi_dart/GlpiClient/initSession.html">initSession</a></li>
+    <li><a href="../glpi_dart/GlpiClient/initSessionUsernamePassword.html">initSessionUsernamePassword</a></li>
+    <li><a href="../glpi_dart/GlpiClient/initSessionUserToken.html">initSessionUserToken</a></li>
     <li><a href="../glpi_dart/GlpiClient/killSession.html">killSession</a></li>
     <li><a href="../glpi_dart/GlpiClient/listSearchOptions.html">listSearchOptions</a></li>
     <li><a href="../glpi_dart/GlpiClient/lostPassword.html">lostPassword</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-    <li><a href="../glpi_dart/GlpiClient/searchItems.html">searchItems</a></li>
+    <li><a href="../glpi_dart/GlpiClient/search.html">search</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
     <li><a href="../glpi_dart/GlpiClient/updateItem.html">updateItem</a></li>
     <li><a href="../glpi_dart/GlpiClient/updateItems.html">updateItems</a></li>
@@ -759,7 +780,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <footer>
   <span class="no-break">
     glpi_dart
-      0.1.0
+      0.1.6
   </span>
 
   
