@@ -67,7 +67,7 @@ Either run</p>
 <p>Then you can use the library by importing the client.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
 </code></pre>
-<p>There's two way to create a client to access the API, either by using the <a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a> class or by using the <a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a> constructor.</p>
+<p>There's two way to create a client to access the API, either by using the <code>GlpiClient.withLogin</code> class or by using the <code>GlpiClient.withToken</code> constructor.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
 
 void main() async {
@@ -77,18 +77,18 @@ void main() async {
   //Get the session token
   await client.initSession();
 
-  //Then we can start making request for example, gell all the computers
+  //Then we can start making request for example, get all all the computers
   try {
     final computers = await client.getAll(GlpiItemType.Computer);
   } catch (e) {
-   print(e);
+   print('${e.code} - ${e.error} - ${e.message}');
   }
 
   //Or get a specific computer
   try {
     final computer = await client.getItem(GlpiItemType.Computer, '1');
   } catch (e) {
-    print(e);
+      print('${e.code} - ${e.error} - ${e.message}');
   }
 
   //Then we can delete the session
@@ -100,7 +100,7 @@ void main() async {
 The exception will contain the http response code and a <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a> with the error code and the error localized message.
 The error code is the HTTP status code returned by the server.
 The error message is the message returned by the server.</p>
-<p>Methods will also throw an exception if the session token is not set using <a href="../glpi_dart/GlpiClient/initSession.html">GlpiClient.initSession</a>.</p>
+<p>Methods will also throw an exception if the session token is not set using <code>GlpiClient.initSession</code>.</p>
 </section>
 
 
@@ -114,8 +114,16 @@ The error message is the message returned by the server.</p>
 </dt>
 <dd>
   A client used to communicate with the GLPI API.
-To create a client you may use either <a href="../glpi_dart/GlpiClient/GlpiClient.withLogin.html">GlpiClient.withLogin</a> or <a href="../glpi_dart/GlpiClient/GlpiClient.withToken.html">GlpiClient.withToken</a>.
-The former will create a client with a username and password, the latter with a user token and an app token. 
+To create a client you may use either <code>GlpiClient.withLogin</code> or <code>GlpiClient.withToken</code>.
+The former will create a client with a username and password, the latter with a user token and an app token.
+</dd>
+
+        <dt id="GlpiClientBase">
+  <span class="name "><a href="../glpi_dart/GlpiClientBase-class.html">GlpiClientBase</a></span> 
+
+</dt>
+<dd>
+  Represent the base client for all GLPI API calls.
 </dd>
 
         <dt id="GlpiSearchCriteria">
@@ -123,7 +131,7 @@ The former will create a client with a username and password, the latter with a 
 
 </dt>
 <dd>
-  Represent a search criteria to be used in a search request with <a href="../glpi_dart/GlpiClient/searchItems.html">GlpiClient.searchItems</a> 
+  Represent a search criteria to be used in a search request with <code>GlpiClient.searchItems</code>
 </dd>
 
       </dl>
@@ -144,7 +152,7 @@ The former will create a client with a username and password, the latter with a 
 </dt>
 <dd>
   The enum reference all the GLPI itemtype inherited from the GLPI class <a href="https://forge.glpi-project.org/apidoc/class-CommonDBTM.html">CommonDBTM</a>.
-This mean we will keep the GLPI / PHP naming convention for the itemtype. 
+This mean we will keep the GLPI / PHP naming convention for the itemtype.
 </dd>
 
         <dt id="GlpiSearchLink">
@@ -152,7 +160,7 @@ This mean we will keep the GLPI / PHP naming convention for the itemtype.
 
 </dt>
 <dd>
-  Represent both values that can be used inside a search criteria 
+  Represent both values that can be used inside a search criteria
 </dd>
 
         <dt id="GlpiSearchType">
@@ -160,7 +168,7 @@ This mean we will keep the GLPI / PHP naming convention for the itemtype.
 
 </dt>
 <dd>
-  Contains all the search types usable inside a search criteria 
+  Contains all the search types usable inside a search criteria
 </dd>
 
       </dl>
@@ -179,7 +187,7 @@ This mean we will keep the GLPI / PHP naming convention for the itemtype.
   A special <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> class is used to handle the errors.
 It contains the error <a href="../glpi_dart/GlpiException/code.html">code</a> and the error code <a href="../glpi_dart/GlpiException/error.html">error</a> and message <a href="../glpi_dart/GlpiException/message.html">message</a> from GLPI's API response.
 The <a href="../glpi_dart/GlpiException/code.html">code</a> will be a HTTP status code.
-The <a href="../glpi_dart/GlpiException/error.html">error</a> will be the error code and <a href="../glpi_dart/GlpiException/message.html">message</a> the error message. 
+The <a href="../glpi_dart/GlpiException/error.html">error</a> will be the error code and <a href="../glpi_dart/GlpiException/message.html">message</a> the error message.
 </dd>
 
       </dl>
@@ -213,6 +221,7 @@ The <a href="../glpi_dart/GlpiException/error.html">error</a> will be the error 
     <ol>
   <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#classes">Classes</a></li>
   <li><a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a></li>
+  <li><a href="../glpi_dart/GlpiClientBase-class.html">GlpiClientBase</a></li>
   <li><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></li>
 
 
@@ -237,7 +246,7 @@ The <a href="../glpi_dart/GlpiException/error.html">error</a> will be the error 
 <footer>
   <span class="no-break">
     glpi_dart
-      0.1.0
+      0.1.6
   </span>
 
   
