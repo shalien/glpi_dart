@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 5.1.0-dev">
+  <meta name="description" content="glpi_dart API docs, for the Dart programming language.">
+  <title>glpi_dart - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/shalien/glpi_dart">glpi_dart package</a></li>
+  </ol>
+  <div class="self-name">glpi_dart</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="glpi-dart">GLPI DART</h1>
+<p>A library to access the GLPI API</p>
+<p>This library is a wrapper around the GLPI API, it provides a simple way to access he API.</p>
+<p>It is based on the Dart http library so it can be used ont dartvm and dartweb.
+It was implemented following the <a href="https://github.com/lpi-project/glpi/blob/master/apirest.md">GLPI API documentation</a></p>
+<h2 id="first-step">First step</h2>
+<p>Before using the library, you need to make sure your GLPI instance is correctly setup to enable the api usage.</p>
+<p>First you need to add the library to your pubspec.yaml file.</p>
+<p>Either run</p>
+<pre class="language-dart"><code>dart pub add glpi_dart
+</code></pre>
+<p>or manually add</p>
+<pre class="language-dart"><code> glpi_dart: ^0.1.2
+</code></pre>
+<p>to your pubspec.yaml file.</p>
+<p>Then you can use the library by importing the client.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>There's two way to create a client to access the API, either by using the lpiClient.withLogin or by using the GlpiClient.withToken constructor.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
+void main() async {
+  // Create a client with login and password
+  GlpiClient client = GlpiClient.withLogin('http://localhost/glpi/apirest.php/', 'username', 'password');
+  //Get the session token
+  await client.initSession();
+  //Then we can start making request for example, get all the computers
+  try {
+    final computers = await client.getAll(GlpiItemType.Computer);
+  } catch (GlpiException e) {
+      print('${e.code} - ${e.error} - ${e.message}');
+  }
+  //Or get a specific computer
+  try {
+    final computer = await client.getItem(GlpiItemType.Computer, '1');
+  } catch (e) {
+      print('${e.code} - ${e.error} - ${e.message}');
+  }
+  //Then we can delete the session
+  await client.killSession();
+</code></pre>
+<p>Check the <code>example</code> directory for more examples.</p>
+<h2 id="errors">Errors</h2>
+<p>By design the library will throw an GlpiException if an error occurs during the request.
+The exception will contain the http response code and a Map with the error code and the error localized message.
+Methods will also throw an exception if the session token is not set using  GlpiClient.initSession.</p>
+<h2 id="testing">Testing</h2>
+<p>Right now all the tests aren't written and/or cleaned</p>
+<h2 id="license">License</h2>
+<p>See LICENSE.md</p>
+<h2 id="additional-information">Additional information</h2>
+<p>This package is still in development</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="glpi_dart">
+  <span class="name"><a href="glpi_dart/glpi_dart-library.html">glpi_dart</a></span> 
+
+</dt>
+<dd>A library to access the GLPI API
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="https://github.com/shalien/glpi_dart">glpi_dart package</a></li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">glpi_dart</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="glpi_dart/glpi_dart-library.html">glpi_dart</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    glpi_dart
+      0.1.6
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

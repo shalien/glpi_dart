@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="glpi_dart library API docs, for the Dart programming language.">
+  <title>glpi_dart library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">glpi_dart</a></li>
+    <li class="self-crumb">glpi_dart library</li>
+  </ol>
+  <div class="self-name">glpi_dart</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-library">glpi_dart</span> library 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>A library to access the GLPI API</p>
+<p>This library is a wrapper around the GLPI API, it provides a simple way to access the API.
+It is based on the Dart http library so it can be used ont dartvm and dartweb.
+It was implemented following the <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md">GLPI API documentation</a></p>
+<h2 id="usage">Usage</h2>
+<p>Before using the library, you need to make sure your GLPI instance is correctly setup to enable the api usage.</p>
+<p>First you need to add the library to your pubspec.yaml file.
+Either run</p>
+<pre class="language-dart"><code>dart pub add glpi_dart
+</code></pre>
+<p>or manually add</p>
+<pre class="language-dart"><code> glpi_dart: ^0.0.1
+</code></pre>
+<p>to your pubspec.yaml file.</p>
+<p>Then you can use the library by importing the client.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
+</code></pre>
+<p>There's two way to create a client to access the API, either by using the <code>GlpiClient.withLogin</code> class or by using the <code>GlpiClient.withToken</code> constructor.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
+
+void main() async {
+  // Create a client with login and password
+  GlpiClient client = GlpiClient.withLogin('http://localhost/glpi/apirest.php/', 'username', 'password');
+
+  //Get the session token
+  await client.initSession();
+
+  //Then we can start making request for example, get all all the computers
+  try {
+    final computers = await client.getAll(GlpiItemType.Computer);
+  } catch (e) {
+   print('${e.code} - ${e.error} - ${e.message}');
+  }
+
+  //Or get a specific computer
+  try {
+    final computer = await client.getItem(GlpiItemType.Computer, '1');
+  } catch (e) {
+      print('${e.code} - ${e.error} - ${e.message}');
+  }
+
+  //Then we can delete the session
+  await client.killSession();
+</code></pre>
+<p>Check the <code>example</code> directory for more examples.</p>
+<h2 id="errors">Errors</h2>
+<p>By design the library will throw an <a href="../glpi_dart/GlpiException-class.html">GlpiException</a> if an error occurs during the request.
+The exception will contain the http response code and a <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a> with the error code and the error localized message.
+The error code is the HTTP status code returned by the server.
+The error message is the message returned by the server.</p>
+<p>Methods will also throw an exception if the session token is not set using <code>GlpiClient.initSession</code>.</p>
+</section>
+
+
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+
+      <dl>
+        <dt id="GlpiClient">
+  <span class="name "><a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a></span> 
+
+</dt>
+<dd>
+  A client used to communicate with the GLPI API.
+To create a client you may use either <code>GlpiClient.withLogin</code> or <code>GlpiClient.withToken</code>.
+The former will create a client with a username and password, the latter with a user token and an app token.
+</dd>
+
+        <dt id="GlpiClientBase">
+  <span class="name "><a href="../glpi_dart/GlpiClientBase-class.html">GlpiClientBase</a></span> 
+
+</dt>
+<dd>
+  Represent the base client for all GLPI API calls.
+</dd>
+
+        <dt id="GlpiSearchCriteria">
+  <span class="name "><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></span> 
+
+</dt>
+<dd>
+  Represent a search criteria to be used in a search request with <code>GlpiClient.searchItems</code>
+</dd>
+
+      </dl>
+    </section>
+
+
+
+
+
+
+    <section class="summary offset-anchor" id="enums">
+      <h2>Enums</h2>
+
+      <dl>
+        <dt id="GlpiItemType">
+  <span class="name "><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></span> 
+
+</dt>
+<dd>
+  The enum reference all the GLPI itemtype inherited from the GLPI class <a href="https://forge.glpi-project.org/apidoc/class-CommonDBTM.html">CommonDBTM</a>.
+This mean we will keep the GLPI / PHP naming convention for the itemtype.
+</dd>
+
+        <dt id="GlpiSearchLink">
+  <span class="name "><a href="../glpi_dart/GlpiSearchLink.html">GlpiSearchLink</a></span> 
+
+</dt>
+<dd>
+  Represent both values that can be used inside a search criteria
+</dd>
+
+        <dt id="GlpiSearchType">
+  <span class="name "><a href="../glpi_dart/GlpiSearchType.html">GlpiSearchType</a></span> 
+
+</dt>
+<dd>
+  Contains all the search types usable inside a search criteria
+</dd>
+
+      </dl>
+    </section>
+
+
+    <section class="summary offset-anchor" id="exceptions">
+      <h2>Exceptions / Errors</h2>
+
+      <dl>
+        <dt id="GlpiException">
+  <span class="name "><a href="../glpi_dart/GlpiException-class.html">GlpiException</a></span> 
+
+</dt>
+<dd>
+  A special <a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a> class is used to handle the errors.
+It contains the error <a href="../glpi_dart/GlpiException/code.html">code</a> and the error code <a href="../glpi_dart/GlpiException/error.html">error</a> and message <a href="../glpi_dart/GlpiException/message.html">message</a> from GLPI's API response.
+The <a href="../glpi_dart/GlpiException/code.html">code</a> will be a HTTP status code.
+The <a href="../glpi_dart/GlpiException/error.html">error</a> will be the error code and <a href="../glpi_dart/GlpiException/message.html">message</a> the error message.
+</dd>
+
+      </dl>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">glpi_dart</a></li>
+  <li class="self-crumb">glpi_dart library</li>
+</ol>
+
+
+    <h5><span class="package-name">glpi_dart</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="../glpi_dart/glpi_dart-library.html">glpi_dart</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>glpi_dart library</h5>
+    <ol>
+  <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#classes">Classes</a></li>
+  <li><a href="../glpi_dart/GlpiClient-class.html">GlpiClient</a></li>
+  <li><a href="../glpi_dart/GlpiClientBase-class.html">GlpiClientBase</a></li>
+  <li><a href="../glpi_dart/GlpiSearchCriteria-class.html">GlpiSearchCriteria</a></li>
+
+
+
+
+
+
+  <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#enums">Enums</a></li>
+  <li><a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a></li>
+  <li><a href="../glpi_dart/GlpiSearchLink.html">GlpiSearchLink</a></li>
+  <li><a href="../glpi_dart/GlpiSearchType.html">GlpiSearchType</a></li>
+
+
+  <li class="section-title"><a href="../glpi_dart/glpi_dart-library.html#exceptions">Exceptions</a></li>
+  <li><a href="../glpi_dart/GlpiException-class.html">GlpiException</a></li>
+</ol>
+
+  </div><!--/sidebar-offcanvas-right-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    glpi_dart
+      0.1.6
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
