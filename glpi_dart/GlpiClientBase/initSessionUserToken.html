@@ -82,10 +82,14 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;Map&lt;String, dynamic&gt;&gt; initSessionUserToken(String userToken,
     {bool getFullSession = false, bool sendInQuery = false}) async {
+  if (userToken.isEmpty) {
+    throw ArgumentError(&#39;userToken must not be empty&#39;);
+  }
+
   final Map&lt;String, String&gt; headers = {
     &#39;Content-Type&#39;: &#39;application&#47;json&#39;,
     ...?appToken != null ? {&#39;App-Token&#39;: appToken!} : null,
-    ...?sendInQuery ? {&#39;Authorization&#39;: &#39;user_token $userToken&#39;} : null,
+    ...?!sendInQuery ? {&#39;Authorization&#39;: &#39;user_token $userToken&#39;} : null,
   };
 
   final uri = sendInQuery
@@ -189,7 +193,7 @@ Future&lt;Map&lt;String, dynamic&gt;&gt; initSessionUserToken(String userToken,
 <footer>
   <span class="no-break">
     glpi_dart
-      0.1.6
+      0.2.0
   </span>
 
   

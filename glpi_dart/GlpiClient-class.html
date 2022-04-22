@@ -51,9 +51,7 @@
 
     
 <section class="desc markdown">
-  <p>A client used to communicate with the GLPI API.
-To create a client you may use either <code>GlpiClient.withLogin</code> or <code>GlpiClient.withToken</code>.
-The former will create a client with a username and password, the latter with a user token and an app token.</p>
+  <p>An abstract client which hold the common clients methods and parameters.</p>
 </section>
 
 
@@ -537,7 +535,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 
 </dt>
 <dd>
-  Return all the searchOptions usable in <code>searchItems</code> criteria for a given <a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a>.
+  Return all the searchOptions usable in <a href="../glpi_dart/GlpiClient/search.html">search</a> criteria for a given <a href="../glpi_dart/GlpiItemType.html">GlpiItemType</a>.
   
 
 </dd>
@@ -780,7 +778,7 @@ Reference: <a href="https://github.com/glpi-project/glpi/blob/master/apirest.md#
 <footer>
   <span class="no-break">
     glpi_dart
-      0.1.6
+      0.2.0
   </span>
 
   

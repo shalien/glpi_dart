@@ -56,40 +56,47 @@ It was implemented following the <a href="https://github.com/lpi-project/glpi/bl
 <pre class="language-dart"><code>dart pub add glpi_dart
 </code></pre>
 <p>or manually add</p>
-<pre class="language-dart"><code> glpi_dart: ^0.1.2
+<pre class="language-dart"><code> glpi_dart: ^0.2.0
 </code></pre>
 <p>to your pubspec.yaml file.</p>
 <p>Then you can use the library by importing the client.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
 </code></pre>
 <h2 id="usage">Usage</h2>
-<p>There's two way to create a client to access the API, either by using the lpiClient.withLogin or by using the GlpiClient.withToken constructor.</p>
+<p>Import the library and create a client using <code>Glpiclient()</code>
+You can either also create a client with a stored session token to avoid calling <code>initSessionUsernamePassword</code> or  <code>initSessionToken</code> every time.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:glpi_dart/glpi_dart.dart';
+
 void main() async {
-  // Create a client with login and password
-  GlpiClient client = GlpiClient.withLogin('http://localhost/glpi/apirest.php/', 'username', 'password');
-  //Get the session token
-  await client.initSession();
-  //Then we can start making request for example, get all the computers
+  // We recommend to use a secret management library like dotenv
+  // to store your credentials in a file
+  String userToken = 'abcedfghijklmnopqrstuvwxyz123467890';
+  String appToken = '0987654321zyxwvutsrqponmlkjihgfedcba';
+  String baseUrl = 'http://example.com/apirest.php';
+
+  // Create the client BUT doesn't get the session token
+  GlpiClient client = GlpiClient(baseUrl, appToken: appToken);
+  String? sessionToken;
+
+  // Get the session token
   try {
-    final computers = await client.getAll(GlpiItemType.Computer);
-  } catch (GlpiException e) {
-      print('${e.code} - ${e.error} - ${e.message}');
+    final response = await client.initSessionUserToken(userToken);
+    sessionToken = response['session_token'];
+
+    client.sessionToken = sessionToken;
+  } on GlpiException catch (e) {
+    // In case of will get the http status code (e.code) and the message (e.reason['error'])
+    print('${e.code} - ${e.error} - ${e.message}');
   }
-  //Or get a specific computer
-  try {
-    final computer = await client.getItem(GlpiItemType.Computer, '1');
-  } catch (e) {
-      print('${e.code} - ${e.error} - ${e.message}');
-  }
-  //Then we can delete the session
-  await client.killSession();
+
+  print(sessionToken);
+}
 </code></pre>
 <p>Check the <code>example</code> directory for more examples.</p>
 <h2 id="errors">Errors</h2>
 <p>By design the library will throw an GlpiException if an error occurs during the request.
 The exception will contain the http response code and a Map with the error code and the error localized message.
-Methods will also throw an exception if the session token is not set using  GlpiClient.initSession.</p>
+Methods will also throw an exception if the session token is not set.</p>
 <h2 id="testing">Testing</h2>
 <p>Right now all the tests aren't written and/or cleaned</p>
 <h2 id="license">License</h2>
@@ -106,7 +113,7 @@ Methods will also throw an exception if the session token is not set using  Glpi
   <span class="name"><a href="glpi_dart/glpi_dart-library.html">glpi_dart</a></span> 
 
 </dt>
-<dd>A library to access the GLPI API
+<dd>GLPI DART
 </dd>
 
         </dl>
@@ -142,7 +149,7 @@ Methods will also throw an exception if the session token is not set using  Glpi
 <footer>
   <span class="no-break">
     glpi_dart
-      0.1.6
+      0.2.0
   </span>
 
   
