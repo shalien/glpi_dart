@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dotenv/dotenv.dart';
 import 'package:glpi_dart/glpi_dart.dart';
 import 'package:test/test.dart';

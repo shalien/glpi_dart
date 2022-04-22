@@ -44,3 +44,7 @@ This is the beta release of the package there's still improvements on the way es
 - The documentation has been updated 
 - Some methods have been reworked
 - Added github related files (funding, actions)
+
+
+## 0.2.1
+- Fixed an incorrect import

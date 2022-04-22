@@ -2,7 +2,7 @@ name: glpi_dart
 description:  >- 
   This library is a wrapper around the GLPI API, it provides a simple way to access he API. 
   It is based on the Dart http library so it can be used ont dartvm and dartweb. 
-version: 0.2.0
+version: 0.2.1
 homepage: https://github.com/shalien/glpi_dart
 repository: https://github.com/shalien/glpi_dart
 issue_tracker: https://github.com/shalien/glpi_dart/issues

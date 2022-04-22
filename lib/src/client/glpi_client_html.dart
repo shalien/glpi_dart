@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:html';
 
 import 'package:http/browser_client.dart';
-import 'package:http/http.dart';
 
 import '../glpi_client.dart';
 import 'glpi_client_base.dart';
