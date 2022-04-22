@@ -8,15 +8,20 @@ void main() async {
   String baseUrl = 'http://example.com/apirest.php';
 
   // Create the client BUT doesn't get the session token
-  GlpiClient client = GlpiClient.withLogin(baseUrl, username, password);
+  GlpiClient client = GlpiClient(baseUrl);
+  String? sessionToken;
 
   // Get the session token
   try {
-    await client.initSession();
+    final response =
+        await client.initSessionUsernamePassword(username, password);
+    sessionToken = response['session_token'];
+
+    client.sessionToken = sessionToken;
   } on GlpiException catch (e) {
     // In case of will get the http status code (e.code) and the message (e.reason['error'])
     print('${e.code} - ${e.error} - ${e.message}');
   }
 
-  print(client.sessionToken);
+  print(sessionToken);
 }

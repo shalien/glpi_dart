@@ -31,3 +31,16 @@ This is the beta release of the package there's still improvements on the way es
 ## 0.1.6
 
 - Small refactor and typos fixes
+
+
+## 0.2.0
+- This version contains breaking changes and it's not backward compatible
+- Changed the client implementation to support both web and server usage
+- Changed the way the user authenticate to the server 
+- The session token isn't stored automatically anymore
+- The tests have been rewritten
+- The examples have been rewritten
+- Various typo fixes
+- The documentation has been updated 
+- Some methods have been reworked
+- Added github related files (funding, actions)

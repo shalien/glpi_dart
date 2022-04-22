@@ -1,8 +1,10 @@
+import 'glpi_client.dart';
+
 import 'glpi_item_type.dart';
 import 'glpi_search_link.dart';
 import 'glpi_search_type.dart';
 
-/// Represent a search criteria to be used in a search request with [GlpiClient.searchItems]
+/// Represent a search criteria to be used in a search request with [GlpiClient.search]
 class GlpiSearchCriteria {
   /// The logical link between the search criteria
   GlpiSearchLink? link;
@@ -22,7 +24,7 @@ class GlpiSearchCriteria {
   /// The value to search for
   dynamic value;
 
-  /// Create a new search criteria for [GlpiClient.searchItems]
+  /// Create a new search criteria for [GlpiClient.search]
   /// [link] is the logical link between the search criteria
   /// [field] is the id of the search option (See : [GlpiClient.listSearchOptions])
   /// [meta] is true if the search option is a meta one

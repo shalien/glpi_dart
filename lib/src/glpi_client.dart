@@ -175,7 +175,7 @@ abstract class GlpiClient {
       bool withLogs = false,
       List<String>? addKeysNames});
 
-  /// Return all the searchOptions usable in [searchItems] criteria for a given [GlpiItemType].
+  /// Return all the searchOptions usable in [search] criteria for a given [GlpiItemType].
   Future<Map<String, dynamic>> listSearchOptions(GlpiItemType itemType);
 
   /// ** This method is untested for the moment **

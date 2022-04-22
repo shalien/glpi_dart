@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:html';
 
 import 'package:http/browser_client.dart';
+import 'package:http/http.dart';
 
 import '../glpi_client.dart';
 import 'glpi_client_base.dart';
@@ -25,6 +27,51 @@ class GlpiClientHtml extends GlpiClientBase {
   Future<Map<String, dynamic>> uploadDocument(
     File file,
   ) async {
-    throw UnsupportedError('Not supported in browser');
+    /*
+    if (sessionToken!.isEmpty) {
+      throw Exception('No session token, initSession first');
+    }
+
+    final Map<String, String> headers = {
+      'Session-Token': sessionToken!,
+      'Content-Type': 'multipart/form-data',
+      ...?appToken != null || appToken!.isEmpty
+          ? {'App-Token': appToken!}
+          : null,
+    };
+
+    final uri = Uri.parse('$host/Document');
+
+    final payload = json.encode({
+      'input': {
+        'name': file.name,
+        '_filename': file.name,
+      }
+    });
+
+    final uploadManifest = '$payload;type=application/json';
+
+    final request = MultipartRequest('POST', uri)
+      ..headers.addAll(headers)
+      ..fields['uploadManifest'] = uploadManifest
+      ..files.add(MultipartFile.fromBytes(
+        'file',
+        file.readAsBytesSync(),
+        filename: file.path.split('/').last,
+      ));
+
+    final response = await request.send();
+
+    final body = await response.stream.transform(utf8.decoder).join();
+
+    if (response.statusCode != 200 && response.statusCode != 207) {
+      throw Exception('${response.statusCode} $body');
+    }
+
+    Map<String, dynamic> decodedJson = json.decode(body);
+
+    return Future.value(decodedJson);
+    */
+    throw UnsupportedError('Not supported on the web');
   }
 }

@@ -75,6 +75,10 @@ abstract class GlpiClientBase implements GlpiClient {
   @override
   Future<Map<String, dynamic>> initSessionUserToken(String userToken,
       {bool getFullSession = false, bool sendInQuery = false}) async {
+    if (userToken.isEmpty) {
+      throw ArgumentError('userToken must not be empty');
+    }
+
     final Map<String, String> headers = {
       'Content-Type': 'application/json',
       ...?appToken != null ? {'App-Token': appToken!} : null,
@@ -627,7 +631,7 @@ abstract class GlpiClientBase implements GlpiClient {
     return Future.value(formatted);
   }
 
-  /// Return all the searchOptions usable in [searchItems] criteria for a given [GlpiItemType].
+  /// Return all the searchOptions usable in [search] criteria for a given [GlpiItemType].
   @override
   Future<Map<String, dynamic>> listSearchOptions(GlpiItemType itemType) async {
     if (sessionToken!.isEmpty) {
