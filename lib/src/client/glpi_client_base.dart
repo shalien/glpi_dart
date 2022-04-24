@@ -468,7 +468,8 @@ abstract class GlpiClientBase implements GlpiClient {
       String order = 'ASC',
       String searchText = 'NULL',
       bool isDeleted = false,
-      List? addKeysNames}) async {
+      List? addKeysNames,
+      bool? withNetworkPorts}) async {
     if (sessionToken!.isEmpty) {
       throw Exception('No session token, initSession first');
     }
@@ -488,6 +489,11 @@ abstract class GlpiClientBase implements GlpiClient {
       for (var key in addKeysNames) {
         uri.queryParameters.addAll({'add_keys_names[]': key});
       }
+    }
+
+    if (withNetworkPorts != null) {
+      uri.queryParameters
+          .addAll({'with_networkports': withNetworkPorts.toString()});
     }
 
     final response = await _innerClient.get(uri, headers: headers);
